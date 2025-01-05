@@ -4,14 +4,17 @@
   "private": true,
   "dependencies": {
     "aos": "^2.3.4",
-    "bootstrap": "^5.3.3",
+    "firebase": "^11.1.0",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-quill": "^2.0.0",
     "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^11.0.2",
     "slick-carousel": "^1.8.1",
+    "sweetalert2": "^11.15.10",
     "web-vitals": "^4.2.4",
     "wowjs": "^1.1.3"
   },
