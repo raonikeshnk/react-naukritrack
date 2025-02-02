@@ -37,3 +37,15 @@
   }
 }
 
+.blog-item.highlighted {
+  background-color: #f0f8ff;  /* Light blue background for highlight */
+  border: 2px solid #00f;     /* Blue border for extra emphasis */
+  transition: background-color 0.3s ease-in-out;
+}
+
+.blog-item {
+  padding: 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+}
+

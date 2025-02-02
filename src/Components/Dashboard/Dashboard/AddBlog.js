@@ -15,6 +15,7 @@ const AddBlog = ({ onAdd }) => {
     const [content, setContent] = useState('');
     const [isPublished, setIsPublished] = useState(false);
     const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);  // Added for preview
     const [loading, setLoading] = useState(false);
     const [existingCategories, setExistingCategories] = useState([]);
     const [existingTags, setExistingTags] = useState([]);
@@ -81,6 +82,20 @@ const AddBlog = ({ onAdd }) => {
         }
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        setImage(file);
+
+        // Preview the selected image
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (loading) return;
@@ -88,6 +103,7 @@ const AddBlog = ({ onAdd }) => {
         setLoading(true);
         try {
             let imageUrl = '';
+            const authorName = currentUser.displayName || 'Unknown Author';
 
             // Handle image upload
             if (image) {
@@ -121,6 +137,7 @@ const AddBlog = ({ onAdd }) => {
                 isPublished,
                 imageUrl,
                 authorId: currentUser.uid,
+                authorName,
                 createdAt: new Date(),
             });
 
@@ -204,8 +221,13 @@ const AddBlog = ({ onAdd }) => {
                         type="file"
                         id="image"
                         className="form-control-file"
-                        onChange={(e) => setImage(e.target.files[0])}
+                        onChange={handleImageChange}
                     />
+                    {imagePreview && (
+                        <div className="mt-3">
+                            <img src={imagePreview} alt="Preview" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                        </div>
+                    )}
                 </div>
                 <div className="form-check">
                     <input

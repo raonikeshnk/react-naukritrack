@@ -1,8 +1,9 @@
 import React from 'react';
 
-const BlogItem = ({ blog, index, onDelete, onEdit, onPublish, onUnpublish, onPreview }) => {
+const BlogItem = ({ blog, index, onDelete, onEdit, onPublish, onUnpublish, onPreview, description }) => {
 
   return (
+    
     <tr>
       <td>{index + 1}</td>
       <td>
@@ -37,6 +38,8 @@ const BlogItem = ({ blog, index, onDelete, onEdit, onPublish, onUnpublish, onPre
           {blog.isPublished ? 'Published' : 'Draft'}
         </span>
       </td>
+      {/* <p><strong>Description:</strong> {description ? description : 'No description available'}</p> */}
+
       <td>
         {!blog.isPublished ? (
           <button

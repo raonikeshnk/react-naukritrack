@@ -22,46 +22,46 @@ export function Login({ setUserRole }) {
     }
   }, [navigate]);
 
-const handleLogin = async (e) => {
-  e.preventDefault();
-  setMessage("");
-  setLoading(true);
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setMessage("");
+    setLoading(true);
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
 
-    if (!user.emailVerified) {
-      setMessage("Please verify your email before logging in.");
+      if (!user.emailVerified) {
+        setMessage("Please verify your email before logging in.");
+        setLoading(false);
+        return;
+      }
+
+      const userRef = doc(db, "ntusers", user.uid);
+      const userDoc = await getDoc(userRef);
+
+      if (userDoc.exists()) {
+        const userRole = userDoc.data().role;
+        setUserRole(userRole);
+        console.log("Login User:", userRole)
+        navigate(userRole === "superuser" ? "/dashboard/superuser" : "/dashboard/user");
+      } else {
+        setMessage("User role not found.");
+      }
+    } catch (error) {
+      switch (error.code) {
+        case "auth/user-not-found":
+          setMessage("No user found with this email.");
+          break;
+        case "auth/wrong-password":
+          setMessage("Incorrect password. Please try again.");
+          break;
+        default:
+          setMessage(`Error: ${error.message}`);
+      }
+    } finally {
       setLoading(false);
-      return;
     }
-
-    const userRef = doc(db, "ntusers", user.uid);
-    const userDoc = await getDoc(userRef);
-
-    if (userDoc.exists()) {
-      const userRole = userDoc.data().role;
-      setUserRole(userRole);
-
-      navigate(userRole === "superuser" ? "/dashboard/superuser" : "/dashboard/user");
-    } else {
-      setMessage("User role not found.");
-    }
-  } catch (error) {
-    switch (error.code) {
-      case "auth/user-not-found":
-        setMessage("No user found with this email.");
-        break;
-      case "auth/wrong-password":
-        setMessage("Incorrect password. Please try again.");
-        break;
-      default:
-        setMessage(`Error: ${error.message}`);
-    }
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
 
   const handleResendVerification = async () => {

@@ -6,6 +6,7 @@ import { useAuth } from "./Components/context/AuthContext";
 import Preloader from "./partials/Preloader";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
+import BlogList from "./Components/Dashboard/Dashboard/BlogList";
 
 // Lazy loading components
 const HomePage = lazy(() => import("./Components/HomePage"));
@@ -17,12 +18,16 @@ const JobListing = lazy(() => import("./Components/JobListing"));
 const SingleBlog = lazy(() => import("./Components/SingleBlog"));
 const Register = lazy(() => import("./Components/Register"));
 const Login = lazy(() => import("./Components/Login"));
-const SuperuserDashboard = lazy(() => import("./Components/Dashboard/SuperuserDashboard/SuperuserDashboard"));
-const UserDashboard = lazy(() => import("./Components/Dashboard/UserDashboard/UserDashboard"));
+const SuperuserDashboard = lazy(() => import("./Components/Dashboard/Dashboard/SuperuserDashboard"));
+const UserDashboard = lazy(() => import("./Components/Dashboard/Dashboard/UserDashboard"));
 
 // ProtectedRoute wrapper
 const ProtectedRoute = ({ element, allowedRole }) => {
-  const { currentUser, userRole } = useAuth();
+  const { currentUser, userRole, loading } = useAuth();
+
+  if (loading) {
+    return <div>Loading...</div>; // Replace with your preloader or spinner
+  }
 
   if (!currentUser) {
     return <Navigate to="/login" replace />;
@@ -63,6 +68,7 @@ const App = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blogs" element={<BlogPage />} />
+          <Route path="/allblogs" element={<BlogList />} />
           <Route path="/jobdetails" element={<JobDetails />} />
           <Route path="/joblist" element={<JobListing />} />
           <Route path="/singleblog" element={<SingleBlog />} />
