@@ -1,6 +1,6 @@
 {
-  "short_name": "MyApp",
-  "name": "My Application",
+  "short_name": "NaukriTrack",
+  "name": "NaukriTrack",
   "icons": [
     {
       "src": "icon.png",

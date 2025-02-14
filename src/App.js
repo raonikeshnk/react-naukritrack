@@ -6,7 +6,7 @@ import { useAuth } from "./Components/context/AuthContext";
 import Preloader from "./partials/Preloader";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
-import BlogList from "./Components/Dashboard/Dashboard/BlogList";
+import BlogList from "./Components/BlogList";
 
 // Lazy loading components
 const HomePage = lazy(() => import("./Components/HomePage"));
@@ -67,11 +67,12 @@ const App = () => {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/blogs" element={<BlogPage />} />
-          <Route path="/allblogs" element={<BlogList />} />
+          <Route path="/blogs" element={<BlogPage />} />  {/* Static blog page */}
+          <Route path="/allblogs" element={<BlogList />} /> {/* Dynamic blog page */}
           <Route path="/jobdetails" element={<JobDetails />} />
           <Route path="/joblist" element={<JobListing />} />
-          <Route path="/singleblog" element={<SingleBlog />} />
+          {/* <Route path="/singleblog" element={<SingleBlog />} /> */}
+          <Route path="/singleblog/:id" element={<SingleBlog key={window.location.pathname } />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={!currentUser ? <Login /> : <Navigate to="/" replace />} />
 
