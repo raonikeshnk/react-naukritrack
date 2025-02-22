@@ -1,29 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs, query, doc, getDoc } from 'firebase/firestore';
-import { app } from '../Components/Firebase/firebase'; // Import your Firebase app configuration
+import React from 'react';
 
-
-function SingleBlog() {
-  const [blogs, setBlogs] = useState([]);
-
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      const db = getFirestore();
-      const blogsCollection = collection(db, 'ntblogs');
-      const q = query(blogsCollection);
-      const querySnapshot = await getDocs(q);
-
-      const blogsData = [];
-      querySnapshot.forEach((doc) => {
-        blogsData.push({ id: doc.id, ...doc.data() });
-      });
-
-      console.log("Fetched blogs: ", blogsData);
-      setBlogs(blogsData);  // Set the blogs state
-    };
-
-    fetchBlogs();
-  }, []);
+function SingleBlog2() {
 
   return (
     <>
@@ -52,8 +29,7 @@ function SingleBlog() {
                      <img className="img-fluid" src="assets/img/blog/single_blog_1.png" alt=""/>
                   </div>
                   <div className="blog_details">
-                     <h2>{blogs.title}
-                     </h2>
+                     <h2>Second divided from form fish beast made every of seas</h2>
                      <ul className="blog-info-link mt-3 mb-4">
                         <li><a href="#"><i className="fa fa-user"></i> Travel, Lifestyle</a></li>
                         <li><a href="#"><i className="fa fa-comments"></i> 03 Comments</a></li>
@@ -455,4 +431,4 @@ function SingleBlog() {
   )
 }
 
-export default SingleBlog
+export default SingleBlog2

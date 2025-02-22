@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense } from "react";
+import './App.css';
 import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,6 +17,7 @@ const BlogPage = lazy(() => import("./Components/BlogPage"));
 const JobDetails = lazy(() => import("./Components/JobDetails"));
 const JobListing = lazy(() => import("./Components/JobListing"));
 const SingleBlog = lazy(() => import("./Components/SingleBlog"));
+const SingleBlog2 = lazy(() => import("./Components/SingleBlog copy"));
 const Register = lazy(() => import("./Components/Register"));
 const Login = lazy(() => import("./Components/Login"));
 const SuperuserDashboard = lazy(() => import("./Components/Dashboard/Dashboard/SuperuserDashboard"));
@@ -71,7 +73,7 @@ const App = () => {
           <Route path="/allblogs" element={<BlogList />} /> {/* Dynamic blog page */}
           <Route path="/jobdetails" element={<JobDetails />} />
           <Route path="/joblist" element={<JobListing />} />
-          {/* <Route path="/singleblog" element={<SingleBlog />} /> */}
+          <Route path="/singleblog2" element={<SingleBlog2 />} />
           <Route path="/singleblog/:id" element={<SingleBlog key={window.location.pathname } />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={!currentUser ? <Login /> : <Navigate to="/" replace />} />

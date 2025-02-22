@@ -63,7 +63,7 @@ function Header() {
                         <div className="row align-items-center">
                             <div className="col-lg-3 col-md-2">
                                 <div className="logo">
-                                    <a href="/"><img src="assets/img/logo/naukri-track.png" alt="" /></a>
+                                    <a href="/"><img src="/assets/img/logo/naukri-track.png" alt="" /></a>
                                 </div>
                             </div>
                             <div className="col-lg-9 col-md-9">
