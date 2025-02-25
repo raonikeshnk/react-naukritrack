@@ -1,9 +1,13 @@
-import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import Sidebar from '../partials/Sidebar'; // Import the Sidebar component
 import useBlogData from '../hooks/useBlogData'; // Import the custom hook
 
 function BlogList() {
+  const location = useLocation();
+  const { state } = location;
+  console.log("BlogList - location state:", state);
+
   const {
     blogs,
     categories,
@@ -11,20 +15,45 @@ function BlogList() {
     searchTerm,
     searchResults,
     handleSearch,
-    formatDate
+    formatDate,
+    handleCategoryClick,
+    filteredBlogs,
+    currentPage,
+    setCurrentPage,
+    blogsPerPage,
+    blogsLoaded
   } = useBlogData(); // Use the custom hook
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (blogsLoaded) {
+      console.log("BlogList - useEffect - state:", state);
+      if (state && state.category) {
+        console.log("BlogList - Applying category filter:", state.category);
+        handleCategoryClick(state.category);
+      } else {
+        console.log("BlogList - No category filter, setting current page to 1");
+        setCurrentPage(1);
+      }
+    }
+  }, [state, blogsLoaded]);
 
-  const navigateToPost = (postId) => {
-    navigate(`/singleblog/${postId}`);
+  // Pagination logic
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = filteredBlogs.slice(indexOfFirstBlog, indexOfLastBlog);
+
+  console.log("BlogList - currentBlogs:", currentBlogs);
+
+  const paginate = (pageNumber) => {
+    console.log("Paginating to page:", pageNumber);
+    setCurrentPage(pageNumber);
   };
 
   return (
     <>
       {/* <!-- Hero Area Start--> */}
-      <div className="slider-area ">
-        <div className="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+      <div className="slider-area">
+        <div className="single-slider section-overly slider-height2 d-flex align-items-center" style={{ backgroundImage: `url(/assets/img/hero/about.jpg)` }}>
           <div className="container">
             <div className="row">
               <div className="col-xl-12">
@@ -43,7 +72,7 @@ function BlogList() {
           <div className="row">
             <div className="col-lg-8 mb-5 mb-lg-0">
               <div className="blog_left_sidebar">
-                {blogs.map((blog, index) => (
+                {currentBlogs.map((blog, index) => (
                   <article className="blog_item" key={index}>
                     <div className="blog_item_img">
                       <img
@@ -62,9 +91,9 @@ function BlogList() {
                     </div>
 
                     <div className="blog_details">
-                      <a className="d-inline-block" href={`singleblog/${blog.id}`}>
+                      <Link className="d-inline-block" to={`/singleblog/${blog.id}`}>
                         <h2>{blog.title}</h2>
-                      </a>
+                      </Link>
                       <p
                         dangerouslySetInnerHTML={{
                           __html: blog.content ? blog.content.substring(0, 200) + '...' : ''
@@ -82,22 +111,13 @@ function BlogList() {
 
                 <nav className="blog-pagination justify-content-center d-flex">
                   <ul className="pagination">
-                    <li className="page-item">
-                      <a href="#" className="page-link" aria-label="Previous">
-                        <i className="ti-angle-left"></i>
-                      </a>
-                    </li>
-                    <li className="page-item">
-                      <a href="#" className="page-link">1</a>
-                    </li>
-                    <li className="page-item active">
-                      <a href="#" className="page-link">2</a>
-                    </li>
-                    <li className="page-item">
-                      <a href="#" className="page-link" aria-label="Next">
-                        <i className="ti-angle-right"></i>
-                      </a>
-                    </li>
+                    {[...Array(Math.ceil(filteredBlogs.length / blogsPerPage)).keys()].map(number => (
+                      <li key={number + 1} className={`page-item ${currentPage === number + 1 ? 'active' : ''}`}>
+                        <a onClick={() => paginate(number + 1)} href="#" className="page-link">
+                          {number + 1}
+                        </a>
+                      </li>
+                    ))}
                   </ul>
                 </nav>
               </div>
@@ -110,6 +130,10 @@ function BlogList() {
                 categories={categories}
                 recentPosts={recentPosts}
                 formatDate={formatDate}
+                handleCategoryClick={(category) => {
+                  handleCategoryClick(category);
+                  setCurrentPage(1);
+                }}
               />
             </div>
           </div>

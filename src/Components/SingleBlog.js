@@ -1,30 +1,75 @@
-import React from "react";
+import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Sidebar from '../partials/Sidebar'; // Import the Sidebar component
 import useBlogData from '../hooks/useBlogData'; // Import the custom hook
 
 function SingleBlog() {
   const { id: blogId } = useParams(); // Get blog ID from URL params
+  const navigate = useNavigate();
+
   const {
     blog,
     categories,
     recentPosts,
     searchTerm,
     searchResults,
-    allBlogs,
     author,
     prevPost,
     nextPost,
-    instagramFeed,
+    comments,
     loading,
     handleSearch,
-    formatDate
+    formatDate,
+    handleCategoryClick,
+    currentPage,
+    setCurrentPage,
+    blogsPerPage,
+    addComment,
+    user,
+    userDetails
   } = useBlogData(blogId); // Use the custom hook
 
-  const navigate = useNavigate();
+  const [liked, setLiked] = useState(false);
+  const [commentText, setCommentText] = useState("");
+  const [error, setError] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  const handleCommentChange = (e) => {
+    const text = e.target.value;
+    setCommentText(text);
+
+    // Count words
+    const wordCount = text.trim().split(/\s+/).length;
+    setIsValid(wordCount >= 100);
+  };
 
   const navigateToPost = (postId) => {
     navigate(`/singleblog/${postId}`);
+  };
+
+  const handleCategoryNavigate = (category) => {
+    navigate('/allblogs', { state: { category } });
+  };
+
+  const handleLike = () => {
+    setLiked(!liked);
+  };
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!user) {
+      setError("You must be logged in to post a comment.");
+      return;
+    }
+    if (commentText.trim().split(/\s+/).length < 50) {
+      setError("Minimum 50 words required.");
+      return;
+    }
+    if (commentText.trim()) {
+      await addComment(commentText);
+      setCommentText("");
+      setError("");
+    }
   };
 
   if (loading) return <p>Loading...</p>;
@@ -60,28 +105,32 @@ function SingleBlog() {
                   <h2>{blog.title}</h2>
                   <ul className="blog-info-link mt-3 mb-4">
                     <li>
-                      <a href="#"><i className="fa fa-user"></i> {blog.category || "Uncategorized"}</a>
+                      <a href="#" onClick={() => handleCategoryNavigate(blog.category)}><i className="fa fa-user"></i> {blog.category || "Uncategorized"}</a>
                     </li>
                     <li>
-                      <a href="#"><i className="fa fa-comments"></i> {blog.comments?.length || 0} Comments</a>
+                      <a href="#"><i className="fa fa-comments"></i> {comments.length} Comments</a>
                     </li>
                   </ul>
                   <p dangerouslySetInnerHTML={{ __html: blog.content ? blog.content : 'no content' }} />
                 </div>
               </div>
-
               <div className="navigation-top">
                 <div className="d-sm-flex justify-content-between text-center">
-                  <p className="like-info"><span className="align-middle"><i className="fa fa-heart"></i></span> Lily and 4 people like this</p>
+                  <p className="like-info">
+                    <span className="align-middle">
+                      <i className={`fa fa-heart ${liked ? "text-danger" : ""}`} onClick={handleLike}></i>
+                    </span>
+                    {liked ? "You and others like this" : "Lily and 4 others like this"}
+                  </p>
                   <div className="col-sm-4 text-center my-2 my-sm-0">
-                    <p className="comment-count"><span className="align-middle"><i className="fa fa-comment"></i></span> 06 Comments</p>
+                    <p className="comment-count"><span className="align-middle"><i className="fa fa-comment"></i></span> {comments.length} Comments</p>
                   </div>
-                  <div className="social-icons">
-                    <li>{author?.socialLinks?.facebook && <a href={`https://facebook.com/${author.socialLinks.facebook}`} target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f"></i></a>}</li>
-                    <li>{author?.socialLinks?.twitter && <a href={`https://twitter.com/${author.socialLinks.twitter}`} target="_blank" rel="noopener noreferrer"> <i className="fab fa-twitter"></i></a>}</li>
-                    <li>{author?.socialLinks?.linkedin && <a href={`https://linkedin.com/in/${author.socialLinks.linkedin}`} target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin"></i> </a>}</li>
-                    <li>{author?.socialLinks?.instagram && <a href={`https://instagram.com/${author.socialLinks.instagram}`} target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>}</li>
-                  </div>
+                  <ul className="social-icons">
+                    <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i className="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i className="fab fa-dribbble"></i></a></li>
+                    <li><a href="#"><i className="fab fa-behance"></i></a></li>
+                  </ul>
                 </div>
                 <div className="navigation-area">
                   <div className="row">
@@ -131,15 +180,61 @@ function SingleBlog() {
                   </div>
                 </div>
               )}
+              <div className="comments-area">
+                <h4>{comments.length} Comments</h4>
+                {comments.map((comment, index) => (
+                  <div key={index} className="comment-list">
+                    <div className="single-comment justify-content-between d-flex">
+                      <div className="user justify-content-between d-flex">
+                        <div className="thumb">
+                          <img src={comment.userProfilePic || "/assets/img/comment/comment_1.png"} alt="" />
+                        </div>
+                        <div className="desc">
+                          <p className="comment">
+                            {comment.text}
+                          </p>
+                          <div className="d-flex justify-content-between">
+                            <div className="d-flex align-items-center">
+                              <h5>
+                                <a href="#">{comment.userName}</a>
+                              </h5>
+                              <p className="date">{new Date(comment.createdAt.seconds * 1000).toLocaleDateString()}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="comment-form">
+                <h4>Leave a Reply</h4>
+                <form onSubmit={handleCommentSubmit}>
+                  <div className="form-group">
+                    <textarea
+                      className="form-control mb-10"
+                      rows="5"
+                      name="comment"
+                      placeholder="Message (Minimum 50 words)"
+                      value={commentText}
+                      onChange={(e) => setCommentText(e.target.value)}
+                      required
+                    ></textarea>
+                    {error && <p className="text-danger mt-2">{error} <a href="/login">Login</a></p>}
+                  </div>
+                  <button type="submit" className="button button-contactForm btn_1 boxed-btn">Post Comment</button>
+                </form>
+              </div>
             </div>
             <div className="col-lg-4">
-              <Sidebar 
+              <Sidebar
                 searchTerm={searchTerm}
                 handleSearch={handleSearch}
                 searchResults={searchResults}
                 categories={categories}
                 recentPosts={recentPosts}
                 formatDate={formatDate}
+                handleCategoryClick={handleCategoryNavigate}
               />
             </div>
           </div>

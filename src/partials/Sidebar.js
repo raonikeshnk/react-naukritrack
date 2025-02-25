@@ -1,19 +1,9 @@
-import React,  { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useBlogData } from '../hooks/useBlogData'; // Adjust the path as necessary
 
-function Sidebar({ searchTerm, handleSearch, searchResults, categories, recentPosts, formatDate }) {
-    const [email, setEmail] = useState('');
-
-    const handleEmailChange = (e) => {
-        setEmail(e.target.value);
-    };
-
-    const handleNewsletterSubmit = (e) => {
-        e.preventDefault();
-        console.log('Newsletter email submitted:', email);
-        // Here, you could add logic to send this email to your backend or a third-party service
-        setEmail('');
-    };
+function Sidebar({ searchTerm, handleSearch, searchResults, categories, recentPosts, formatDate, handleCategoryClick }) {
+    const { email, handleEmailChange, handleNewsletterSubmit } = useBlogData();
 
     return (
         <div className="blog_right_sidebar">
@@ -44,7 +34,7 @@ function Sidebar({ searchTerm, handleSearch, searchResults, categories, recentPo
                 <h4 className="widget_title">Category</h4>
                 <ul className="list cat-list">
                     {categories.map(([category, count]) => (
-                        <li key={category}>
+                        <li key={category} onClick={() => handleCategoryClick(category)}>
                             <a href="#" className="d-flex">
                                 <p>{category}</p>
                                 <p>({count})</p>
@@ -67,43 +57,7 @@ function Sidebar({ searchTerm, handleSearch, searchResults, categories, recentPo
                 ))}
             </aside>
 
-            {/* <aside className="single_sidebar_widget instagram_feeds">
-        <h4 className="widget_title">Instagram Feeds</h4>
-        <ul className="instagram_row flex-wrap">
-          <li>
-            <a href="#">
-              <img className="img-fluid" src="/assets/img/post/post_5.png" alt="" />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img className="img-fluid" src="/assets/img/post/post_6.png" alt="" />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img className="img-fluid" src="/assets/img/post/post_7.png" alt="" />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img className="img-fluid" src="/assets/img/post/post_8.png" alt="" />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img className="img-fluid" src="/assets/img/post/post_9.png" alt="" />
-            </a>
-          </li>
-          <li>
-            <a href="#">
-              <img className="img-fluid" src="/assets/img/post/post_10.png" alt="" />
-            </a>
-          </li>
-        </ul>
-      </aside> */}
-
-            <aside className="single_sidebar_widget newsletter_widget">
+            <aside className="single_sidebar_widget newsletter_widget active">
                 <h4 className="widget_title">Newsletter</h4>
                 <form onSubmit={handleNewsletterSubmit}>
                     <div className="form-group">

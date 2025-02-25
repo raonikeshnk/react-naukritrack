@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { getFirestore, collection, getDocs, query, orderBy, limit, where, doc, getDoc } from 'firebase/firestore';
+import { getFirestore, collection, getDocs, query, orderBy, limit, where, doc, getDoc, addDoc } from 'firebase/firestore';
 import { app } from '../Components/Firebase/firebase';
-import axios from 'axios';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-const useBlogData = (blogId) => {
+export const useBlogData = (blogId) => {
   const [blogs, setBlogs] = useState([]);
   const [blog, setBlog] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -14,14 +14,56 @@ const useBlogData = (blogId) => {
   const [author, setAuthor] = useState(null);
   const [prevPost, setPrevPost] = useState(null);
   const [nextPost, setNextPost] = useState(null);
-  const [instagramFeed, setInstagramFeed] = useState([]);
+  const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState('');
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 5;
+  const [user, setUser] = useState(null);
+  const [userDetails, setUserDetails] = useState(null);
+
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        setUser(user);
+        const userRef = doc(db, "ntusers", user.uid);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          setUserDetails(userSnap.data());
+        }
+      } else {
+        setUser(null);
+        setUserDetails(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth, db]);
+
+  const fetchComments = async () => {
+    if (!blogId) return;
+    try {
+      const commentsQuery = query(collection(db, "comments"), where("blogId", "==", blogId), orderBy("createdAt", "asc"));
+      const querySnapshot = await getDocs(commentsQuery);
+      const commentsData = [];
+      querySnapshot.forEach((doc) => {
+        commentsData.push({ id: doc.id, ...doc.data() });
+      });
+      setComments(commentsData);
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  };
 
   useEffect(() => {
     const fetchBlog = async () => {
-      if (!blogId) return; // Ensure blogId exists
+      if (!blogId) return;
+
       try {
-        const db = getFirestore(app);
         const blogRef = doc(db, "ntblogs", blogId);
         const blogSnap = await getDoc(blogRef);
 
@@ -29,7 +71,6 @@ const useBlogData = (blogId) => {
           const blogData = blogSnap.data();
           setBlog({ id: blogSnap.id, ...blogData });
 
-          // Fetch author data
           if (blogData.authorId) {
             const authorRef = doc(db, "ntusers", blogData.authorId);
             const authorSnap = await getDoc(authorRef);
@@ -38,7 +79,6 @@ const useBlogData = (blogId) => {
             }
           }
 
-          // Fetch previous and next posts
           const blogsQuery = query(collection(db, "ntblogs"), orderBy("createdAt", "desc"));
           const querySnapshot = await getDocs(blogsQuery);
           const blogsList = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
@@ -63,7 +103,6 @@ const useBlogData = (blogId) => {
 
     const fetchBlogs = async () => {
       try {
-        const db = getFirestore(app);
         const blogsQuery = query(collection(db, "ntblogs"));
         const querySnapshot = await getDocs(blogsQuery);
         const blogsData = [];
@@ -72,6 +111,7 @@ const useBlogData = (blogId) => {
         });
         setBlogs(blogsData);
         setAllBlogs(blogsData);
+        setFilteredBlogs(blogsData);
       } catch (error) {
         console.error("Error fetching blogs:", error);
       }
@@ -79,7 +119,6 @@ const useBlogData = (blogId) => {
 
     const fetchCategories = async () => {
       try {
-        const db = getFirestore(app);
         const blogsQuery = query(collection(db, "ntblogs"));
         const querySnapshot = await getDocs(blogsQuery);
         const categoriesData = {};
@@ -101,7 +140,6 @@ const useBlogData = (blogId) => {
 
     const fetchRecentPosts = async () => {
       try {
-        const db = getFirestore(app);
         const blogsQuery = query(collection(db, "ntblogs"), orderBy("createdAt", "desc"), limit(5));
         const querySnapshot = await getDocs(blogsQuery);
         const postsData = [];
@@ -114,32 +152,11 @@ const useBlogData = (blogId) => {
       }
     };
 
-    const fetchAdminInstagram = async () => {
-      try {
-        const db = getFirestore(app);
-        const q = query(collection(db, "ntusers"), where("role", "==", "superuser"));
-        const querySnapshot = await getDocs(q);
-        if (!querySnapshot.empty) {
-          const adminData = querySnapshot.docs[0].data();
-          const instagramLink = adminData.socialLinks?.instagram;
-            console.log(instagramLink);
-          if (instagramLink) {
-            const response = await axios.get(`https://graph.instagram.com/2698274760383424/media?fields=id,caption,media_type,media_url,permalink&access_token=EAAQPZByfirsABO1EaZBtCfmOI5ZARPC1tSOMZA82HqCZAZC4J40HBBlmF2cnqzT9l81EZA1t9ixOqMEugdFCQbALQZCopJ2ZAemiGLGWHuAQrFNGuRq0hzUSnY3c6b9lyY0JuJfjfR4NZAZCBoAJo6csZC5Uydfx1bvvzJcT2BFbEqR4XuYvAXkFDCbcSPIjE2GWZAS6kHIZBw0roZCYcjV5ywmV0mr3khPDINawCEefwZDZD`);
-            setInstagramFeed(response.data.data.ig_user.media.nodes);
-          }
-        } else {
-          console.error("No admin user found!");
-        }
-      } catch (error) {
-        console.error("Error fetching admin Instagram feed:", error);
-      }
-    };
-
     fetchBlog();
     fetchBlogs();
     fetchCategories();
     fetchRecentPosts();
-    fetchAdminInstagram();
+    fetchComments();
   }, [blogId]);
 
   const handleSearch = (event) => {
@@ -151,11 +168,16 @@ const useBlogData = (blogId) => {
       return;
     }
 
-    // Suggest blogs based on user input
     const filteredBlogs = allBlogs.filter(blog =>
       blog.title.toLowerCase().includes(input.toLowerCase())
     );
     setSearchResults(filteredBlogs);
+  };
+
+  const handleCategoryClick = (category) => {
+    const filtered = allBlogs.filter(blog => blog.category === category);
+    setFilteredBlogs(filtered);
+    setCurrentPage(1);
   };
 
   const formatDate = (timestamp) => {
@@ -165,6 +187,42 @@ const useBlogData = (blogId) => {
       month: "long",
       day: "numeric"
     });
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, "newsletter"), {
+        email: email,
+        timestamp: new Date()
+      });
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+    setEmail('');
+  };
+
+  const addComment = async (commentText) => {
+    if (!user || !userDetails) return;
+    try {
+      const newComment = {
+        blogId,
+        text: commentText,
+        createdAt: new Date(),
+        userId: user.uid,
+        userName: userDetails.name || "Anonymous",
+        userProfilePic: userDetails.profilePicture || "/assets/img/comment/comment_1.png"
+      };
+      await addDoc(collection(db, "comments"), newComment);
+      fetchComments(); // Fetch comments again after adding a new comment
+    } catch (error) {
+      console.error("Error adding comment: ", error);
+    }
   };
 
   return {
@@ -178,10 +236,21 @@ const useBlogData = (blogId) => {
     author,
     prevPost,
     nextPost,
-    instagramFeed,
+    comments,
     loading,
     handleSearch,
-    formatDate
+    handleCategoryClick,
+    formatDate,
+    email,
+    handleEmailChange,
+    handleNewsletterSubmit,
+    filteredBlogs,
+    currentPage,
+    setCurrentPage,
+    blogsPerPage,
+    addComment,
+    user,
+    userDetails
   };
 };
 
