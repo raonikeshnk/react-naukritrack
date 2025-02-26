@@ -8,6 +8,7 @@ import Preloader from "./partials/Preloader";
 import Header from "./partials/Header";
 import Footer from "./partials/Footer";
 import BlogList from "./Components/BlogList";
+import JobList from './Components/Dashboard/Dashboard/JobList';
 
 // Lazy loading components
 const HomePage = lazy(() => import("./Components/HomePage"));
@@ -77,6 +78,7 @@ const App = () => {
           <Route path="/singleblog/:id" element={<SingleBlog key={window.location.pathname } />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={!currentUser ? <Login /> : <Navigate to="/" replace />} />
+          {/* <Route path="/joblist" element={<JobList />} /> */}
 
           {/* Role-Specific Protected Routes */}
           <Route

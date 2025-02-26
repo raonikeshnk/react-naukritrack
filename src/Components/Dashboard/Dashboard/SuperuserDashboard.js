@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import AddBlog from './AddBlog';
 import Profile from './Profile';
 import EditBlog from './EditBlog';
+import JobPostForm from './JobPostForm';
+import JobList from './JobList';
 import Modal from './Modal';
 import { useAuth } from '../../context/AuthContext';
 import {
@@ -37,9 +39,6 @@ const SuperuserDashboard = () => {
     const [authors, setAuthors] = useState([]);
     const [filterAuthor, setFilterAuthor] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-
-
-
 
     useEffect(() => {
         const fetchBlogs = async () => {
@@ -129,9 +128,6 @@ const SuperuserDashboard = () => {
         }
     }, [currentUser]);
 
-
-
-
     // Real-time notifications listener
     useEffect(() => {
         const db = getFirestore();
@@ -146,6 +142,7 @@ const SuperuserDashboard = () => {
 
         return () => unsubscribe(); // Cleanup subscription
     }, []);
+
     const addNotification = async (message) => {
         const db = getFirestore();
         await addDoc(collection(db, 'ntnotifications'), {
@@ -205,18 +202,15 @@ const SuperuserDashboard = () => {
         setSelectedBlog(null);
     };
 
-
     const handleEdit = (blog) => {
         const authorName = blog.authorName;
-    setSelectedBlog({
-        ...blog,
-        authorName, // Keep author name constant
-    });
+        setSelectedBlog({
+            ...blog,
+            authorName, // Keep author name constant
+        });
         setActiveSection("editBlog");
     };
 
-   
-    
     const handlePublish = async (id) => {
         try {
             const db = getFirestore();
@@ -256,8 +250,6 @@ const SuperuserDashboard = () => {
         setActiveSection("allBlogs"); // All blogs view pe wapas jane ke liye
     };
 
-
-
     const handleCancel = () => {
         setSelectedBlog(null);
         setActiveSection("allBlogs");
@@ -285,7 +277,6 @@ const SuperuserDashboard = () => {
         });
         setFilteredBlogs(sortedBlogs);
     };
-
 
     const handleFilter = () => {
         let filtered = blogs;
@@ -348,6 +339,18 @@ const SuperuserDashboard = () => {
                             onClick={() => setActiveSection("addBlog")}
                         >
                             Add Blog
+                        </button>
+                        <button
+                            className={`list-group-item list-group-item-action border-0 ${activeSection === "addJobPost" ? "active" : ""}`}
+                            onClick={() => setActiveSection("addJobPost")}
+                        >
+                            Add Job Post
+                        </button>
+                        <button
+                            className={`list-group-item list-group-item-action border-0 ${activeSection === "manageJobs" ? "active" : ""}`}
+                            onClick={() => setActiveSection("manageJobs")}
+                        >
+                            Manage Jobs
                         </button>
                     </div>
                 </div>
@@ -478,6 +481,14 @@ const SuperuserDashboard = () => {
                                 ))}
                             </ul>
                         </div>
+                    )}
+
+                    {activeSection === "addJobPost" && (
+                        <JobPostForm />
+                    )}
+
+                    {activeSection === "manageJobs" && (
+                        <JobList />
                     )}
 
                     {/* Blog Preview Modal */}

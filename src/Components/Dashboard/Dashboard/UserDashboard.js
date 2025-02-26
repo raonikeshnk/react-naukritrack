@@ -5,9 +5,11 @@ import BlogItem from './BlogItem';
 import AddBlog from './AddBlog';
 import Profile from './Profile';
 import EditBlog from './EditBlog';
+import JobPostForm from './JobPostForm';
 import Modal from './Modal';
 import { useAuth } from '../../context/AuthContext';
 import { getFirestore, collection, getDoc, deleteDoc, query, where, orderBy, getDocs, addDoc, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
+import JobList from './JobList';
 
 const UserDashboard = () => {
     const [userName, setUserName] = useState(null);
@@ -296,25 +298,37 @@ const UserDashboard = () => {
                         >
                             Add Blog
                         </button>
+                        <button
+                            className={`list-group-item list-group-item-action border-0 ${activeSection === "addJobPost" ? "active" : ""}`}
+                            onClick={() => setActiveSection("addJobPost")}
+                        >
+                            Add Job
+                        </button>
+                        <button
+                            className={`list-group-item list-group-item-action border-0 ${activeSection === "allJobPost" ? "active" : ""}`}
+                            onClick={() => setActiveSection("allJobPost")}
+                        >
+                            All Job 
+                        </button>
                     </div>
                 </div>
 
                 <div className="col-md-10">
                     {activeSection === "notifications" && (
                         <div className="notifications">
-                        <h4>Notifications</h4>
-                        {notifications.length > 0 ? (
-                            notifications.map((notification) => (
-                                <div key={notification.id} className={`notification ${notification.isRead ? 'read' : 'unread'}`}>
-                                    <p>{notification.message}</p>
-                                    <small>{new Date(notification.timestamp.seconds * 1000).toLocaleString()}</small>
-                                    <button onClick={() => markAsRead(notification.id)}>Mark as Read</button>
-                                </div>
-                            ))
-                        ) : (
-                            <p>No notifications.</p>
-                        )}
-                    </div>
+                            <h4>Notifications</h4>
+                            {notifications.length > 0 ? (
+                                notifications.map((notification) => (
+                                    <div key={notification.id} className={`notification ${notification.isRead ? 'read' : 'unread'}`}>
+                                        <p>{notification.message}</p>
+                                        <small>{new Date(notification.timestamp.seconds * 1000).toLocaleString()}</small>
+                                        <button onClick={() => markAsRead(notification.id)}>Mark as Read</button>
+                                    </div>
+                                ))
+                            ) : (
+                                <p>No notifications.</p>
+                            )}
+                        </div>
                     )}
 
                     {activeSection === "profile" && <Profile />}
@@ -429,6 +443,10 @@ const UserDashboard = () => {
                             blog={selectedBlog}
                         />
                     )}
+                    {activeSection === "addJobPost" && <JobPostForm />} 
+                    {activeSection === "allJobPost" && <JobList />} 
+
+
                 </div>
             </div>
         </div>
