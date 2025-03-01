@@ -7,7 +7,6 @@ function JobListing() {
   const [jobPosts, setJobPosts] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [filters, setFilters] = useState({
-    jobCategory: '',
     jobType: [],
     jobLocation: '',
     experience: [],
@@ -57,14 +56,15 @@ function JobListing() {
   };
 
   const filteredJobPosts = jobPosts.filter(job => {
-    const matchesCategory = filters.jobCategory ? job.category === filters.jobCategory : true;
-    const matchesType = filters.jobType.length ? filters.jobType.includes(job.jobType) : true;
+    const matchesType = filters.jobType.length ? filters.jobType.some(type => job.jobType.includes(type)) : true;
     const matchesLocation = filters.jobLocation ? job.location === filters.jobLocation : true;
-    const matchesExperience = filters.experience.length ? filters.experience.includes(job.experience) : true;
+    const matchesExperience = filters.experience.length ? filters.experience.some(exp => job.experience.includes(exp)) : true;
     const matchesPostedWithin = filters.postedWithin.length ? filters.postedWithin.includes(job.postedWithin) : true;
 
-    return matchesCategory && matchesType && matchesLocation && matchesExperience && matchesPostedWithin;
+    return matchesType && matchesLocation && matchesExperience && matchesPostedWithin;
   });
+
+  const uniqueLocations = [...new Set(jobPosts.map(job => job.location))];
 
   return (
     <>
@@ -101,38 +101,24 @@ function JobListing() {
                 <div className="job-category-listing mb-50">
                   <div className="single-listing">
                     <div className="small-section-tittle2">
-                      <h4>Job Category</h4>
+                      <h4>Job Type</h4>
                     </div>
-                    <div className="select-job-items2">
-                      <select name="jobCategory" onChange={handleFilterChange}>
-                        <option value="">All Category</option>
-                        <option value="Category 1">Category 1</option>
-                        <option value="Category 2">Category 2</option>
-                        <option value="Category 3">Category 3</option>
-                        <option value="Category 4">Category 4</option>
-                      </select>
-                    </div>
-                    <div className="select-Categories pt-80 pb-50">
-                      <div className="small-section-tittle2">
-                        <h4>Job Type</h4>
-                      </div>
-                      <label className="container">Full Time
-                        <input type="checkbox" name="jobType" value="Full Time" onChange={handleFilterChange} />
-                        <span className="checkmark"></span>
-                      </label>
-                      <label className="container">Part Time
-                        <input type="checkbox" name="jobType" value="Part Time" onChange={handleFilterChange} />
-                        <span className="checkmark"></span>
-                      </label>
-                      <label className="container">Remote
-                        <input type="checkbox" name="jobType" value="Remote" onChange={handleFilterChange} />
-                        <span className="checkmark"></span>
-                      </label>
-                      <label className="container">Freelance
-                        <input type="checkbox" name="jobType" value="Freelance" onChange={handleFilterChange} />
-                        <span className="checkmark"></span>
-                      </label>
-                    </div>
+                    <label className="container">Full Time
+                      <input type="checkbox" name="jobType" value="Full Time" onChange={handleFilterChange} />
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="container">Part Time
+                      <input type="checkbox" name="jobType" value="Part Time" onChange={handleFilterChange} />
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="container">Remote
+                      <input type="checkbox" name="jobType" value="Remote" onChange={handleFilterChange} />
+                      <span className="checkmark"></span>
+                    </label>
+                    <label className="container">Freelance
+                      <input type="checkbox" name="jobType" value="Freelance" onChange={handleFilterChange} />
+                      <span className="checkmark"></span>
+                    </label>
                   </div>
                   <div className="single-listing">
                     <div className="small-section-tittle2">
@@ -141,10 +127,9 @@ function JobListing() {
                     <div className="select-job-items2">
                       <select name="jobLocation" onChange={handleFilterChange}>
                         <option value="">Anywhere</option>
-                        <option value="Location 1">Location 1</option>
-                        <option value="Location 2">Location 2</option>
-                        <option value="Location 3">Location 3</option>
-                        <option value="Location 4">Location 4</option>
+                        {uniqueLocations.map((location, index) => (
+                          <option key={index} value={location}>{location}</option>
+                        ))}
                       </select>
                     </div>
                     <div className="select-Categories pt-80 pb-50">

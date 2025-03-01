@@ -15,7 +15,6 @@ const JobPostForm = () => {
   const [postedDate, setPostedDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [jobType, setJobType] = useState([]);
-  const [category, setCategory] = useState('');
   const [experience, setExperience] = useState([]);
   const [companyLogo, setCompanyLogo] = useState(null);
 
@@ -46,7 +45,6 @@ const JobPostForm = () => {
         endDate: new Date(endDate),
         isPublished: false,
         jobType,
-        category,
         experience,
         companyLogo: companyLogoURL || 'default-logo.png'
       });
@@ -61,7 +59,6 @@ const JobPostForm = () => {
       setPostedDate('');
       setEndDate('');
       setJobType([]);
-      setCategory('');
       setExperience([]);
       setCompanyLogo(null);
     } catch (error) {
@@ -108,7 +105,7 @@ const JobPostForm = () => {
             <option value="EUR">EUR</option>
             <option value="GBP">GBP</option>
             <option value="INR">INR</option>
-            {/* <!-- Add more currencies as needed --> */}
+            
           </select>
           <input type="number" className="form-control" value={salary} onChange={(e) => setSalary(e.target.value)} required />
         </div>
@@ -120,16 +117,6 @@ const JobPostForm = () => {
       <div className="mb-3">
         <label className="form-label">End Date</label>
         <input type="date" className="form-control" value={endDate} onChange={(e) => setEndDate(e.target.value)} required />
-      </div>
-      <div className="mb-3">
-        <label className="form-label">Category</label>
-        <select className="form-select" value={category} onChange={(e) => setCategory(e.target.value)} required>
-          <option value="">Select Category</option>
-          <option value="Category 1">Category 1</option>
-          <option value="Category 2">Category 2</option>
-          <option value="Category 3">Category 3</option>
-          <option value="Category 4">Category 4</option>
-        </select>
       </div>
       <div className="mb-3">
         <label className="form-label">Job Type</label>
