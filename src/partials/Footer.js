@@ -1,13 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-function Footer() {
-
+const Footer = () => {
     const currentYear = new Date().getFullYear();
-
 
     return (
         <>
-
             {/* <!-- Footer Start--> */}
             <div className="footer-area footer-bg footer-padding">
                 <div className="container">
@@ -18,11 +15,10 @@ function Footer() {
                                     <div className="footer-tittle">
                                         <h4>About Us</h4>
                                         <div className="footer-pera">
-                                            <p>Heaven frucvitful doesn't cover lesser dvsays appear creeping seasons so behold.</p>
+                                            <p>Heaven fruitful doesn't cover lesser days appear creeping seasons so behold.</p>
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
@@ -31,14 +27,12 @@ function Footer() {
                                     <h4>Contact Info</h4>
                                     <ul>
                                         <li>
-                                            <p>Address :Your address goes
-                                                here, your demo address.</p>
+                                            <p>Address: Your address goes here, your demo address.</p>
                                         </li>
-                                        <li><button href="#">Phone : +8880 44338899</button></li>
-                                        <li><button href="#">Email : info@colorlib.com</button></li>
+                                        <li><button onClick={() => window.location.href = 'tel:+888044338899'}>Phone: +8880 44338899</button></li>
+                                        <li><button onClick={() => window.location.href = 'mailto:info@colorlib.com'}>Email: info@colorlib.com</button></li>
                                     </ul>
                                 </div>
-
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
@@ -46,11 +40,11 @@ function Footer() {
                                 <div className="footer-tittle">
                                     <h4>Important Link</h4>
                                     <ul>
-                                        <li><button href="#"> View Project</button></li>
-                                        <li><button href="#">Contact Us</button></li>
-                                        <li><button href="#">Testimonial</button></li>
-                                        <li><button href="#">Proparties</button></li>
-                                        <li><button href="#">Support</button></li>
+                                        <li><button onClick={() => window.location.href = '#'}>View Project</button></li>
+                                        <li><button onClick={() => window.location.href = '#'}>Contact Us</button></li>
+                                        <li><button onClick={() => window.location.href = '#'}>Testimonial</button></li>
+                                        <li><button onClick={() => window.location.href = '#'}>Properties</button></li>
+                                        <li><button onClick={() => window.location.href = '#'}>Support</button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -63,13 +57,14 @@ function Footer() {
                                         <p>Heaven fruitful doesn't over lesser in days. Appear creeping.</p>
                                     </div>
                                     {/* <!-- Form --> */}
-                                    <div className="footer-form" >
+                                    <div className="footer-form">
                                         <div id="mc_embed_signup">
-                                            <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
-                                                method="get" className="subscribe_form relative mail_part">
-                                                {/* <input type="email" name="email" id="newsletter-form-email" placeholder="Email Address"
-                                                        className="placeholder hide-on-focus" onFocus="this.placeholder = ''"
-                                                        onBlur="this.placeholder = ' Email Address '" /> */}
+                                            <form
+                                                target="_blank"
+                                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                                method="get"
+                                                className="subscribe_form relative mail_part"
+                                            >
                                                 <input
                                                     type="email"
                                                     name="email"
@@ -80,8 +75,14 @@ function Footer() {
                                                     onBlur={() => (document.getElementById('newsletter-form-email').placeholder = 'Email Address')}
                                                 />
                                                 <div className="form-icon">
-                                                    <button type="submit" name="submit" id="newsletter-submit"
-                                                        className="email_icon newsletter-submit button-contactForm"><img src="assets/img/icon/form.png" alt="" /></button>
+                                                    <button
+                                                        type="submit"
+                                                        name="submit"
+                                                        id="newsletter-submit"
+                                                        className="email_icon newsletter-submit button-contactForm"
+                                                    >
+                                                        <img src="assets/img/icon/form.png" alt="" />
+                                                    </button>
                                                 </div>
                                                 <div className="mt-10 info"></div>
                                             </form>
@@ -96,7 +97,9 @@ function Footer() {
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             {/* <!-- logo --> */}
                             <div className="footer-logo mb-20">
-                                <button href="index.html"><img src="assets/img/logo/naukri-track-white.png" alt="" /></button>
+                                <a href="index.html">
+                                    <img src="assets/img/logo/naukri-track-white.png" alt="Naukri Track Logo" />
+                                </a>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
@@ -126,21 +129,19 @@ function Footer() {
                 <div className="container">
                     <div className="footer-border">
                         <div className="row d-flex justify-content-between align-items-center">
-                            <div className="col-xl-10 col-lg-10 ">
+                            <div className="col-xl-10 col-lg-10">
                                 <div className="footer-copy-right">
                                     <p>
-                                        
                                         Copyright &copy; {currentYear} All rights reserved.
-                                        
                                     </p>
                                 </div>
                             </div>
                             <div className="col-xl-2 col-lg-2">
                                 <div className="footer-social f-right">
-                                    <button href="#"><i className="fab fa-facebook-f"></i></button>
-                                    <button href="#"><i className="fab fa-twitter"></i></button>
-                                    <button href="#"><i className="fas fa-globe"></i></button>
-                                    <button href="#"><i className="fab fa-behance"></i></button>
+                                    <button onClick={() => window.location.href = '#'}><i className="fab fa-facebook-f"></i></button>
+                                    <button onClick={() => window.location.href = '#'}><i className="fab fa-twitter"></i></button>
+                                    <button onClick={() => window.location.href = '#'}><i className="fas fa-globe"></i></button>
+                                    <button onClick={() => window.location.href = '#'}><i className="fab fa-behance"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +150,7 @@ function Footer() {
             </div>
             {/* <!-- Footer End--> */}
         </>
-    )
-}
+    );
+};
 
-export default Footer
+export default Footer;

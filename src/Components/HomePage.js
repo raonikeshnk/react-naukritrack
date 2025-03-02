@@ -4,47 +4,9 @@ import React, { useEffect } from 'react';
 function HomePage() {
 
     useEffect(() => {
-        // Initialize Nice Select
         const $ = window.$; // Ensure jQuery is available
         $('#select1').niceSelect(); // Initialize Nice Select on the original select element
     }, []);
-    // const jobTitleRef = useRef(null);
-    // const locationRef = useRef(null);
-
-    // const handleFindJob = (event) => {
-    //     event.preventDefault();
-    //     const jobTitle = jobTitleRef.current.value;
-    //     const location = locationRef.current.value;
-
-    //     if (jobTitle && location) {
-    //         console.log(`Searching for jobs as a ${jobTitle} in ${location}...`);
-    //     } else {
-    //         alert('Please enter both a job title and a location.');
-    //     }
-    // };
-
-    // const handleFocus = (event, placeholder) => {
-    //     event.target.style.borderColor = 'blue';
-    //     event.target.placeholder = '';
-    // };
-
-    // const handleBlur = (event, placeholder) => {
-    //     event.target.style.borderColor = '';
-    //     if (!event.target.value) event.target.placeholder = placeholder;
-    // };
-
-    // const jobCategories = [
-    //     'Design & Creative', 'Design & Development', 'Sales & Marketing',
-    //     'Mobile Application', 'Construction', 'Information Technology',
-    //     'Real Estate', 'Content Writer'
-    // ];
-
-    // const applyProcesses = [
-    //     { title: 'Search a job', icon: 'flaticon-search' },
-    //     { title: 'Apply for job', icon: 'flaticon-curriculum-vitae' },
-    //     { title: 'Get your job', icon: 'flaticon-tour' },
-    // ];
-
     return (
         <>
             <main>
@@ -70,16 +32,6 @@ function HomePage() {
                                             <div className="input-form">
                                                 <input type="text" placeholder="Job Tittle or keyword" />
                                             </div>
-                                            {/* <div className="select-form">
-                                                <div className="select-items">
-                                                    <select name="select" id="select1">
-                                                        <option value="">Location BD</option>
-                                                        <option value="">Location PK</option>
-                                                        <option value="">Location US</option>
-                                                        <option value="">Location UK</option>
-                                                    </select>
-                                                </div>
-                                            </div> */}
 
                                             <div className="select-form">
                                                 <div className="select-items">
@@ -93,7 +45,8 @@ function HomePage() {
                                             </div>
 
                                             <div className="search-form">
-                                                <button href="#">Find job</button>
+                                            <button type="button" onClick={() => window.location.href='job_listing.html'}>Find job</button>
+                                                {/* <a href="job_listing.html">Find job</a> */}
                                             </div>
                                         </form>
                                     </div>

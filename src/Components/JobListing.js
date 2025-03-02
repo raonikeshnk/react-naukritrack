@@ -56,9 +56,9 @@ function JobListing() {
   };
 
   const filteredJobPosts = jobPosts.filter(job => {
-    const matchesType = filters.jobType.length ? filters.jobType.some(type => job.jobType.includes(type)) : true;
+    const matchesType = filters.jobType.length ? filters.jobType.some(type => job.jobType?.includes(type)) : true;
     const matchesLocation = filters.jobLocation ? job.location === filters.jobLocation : true;
-    const matchesExperience = filters.experience.length ? filters.experience.some(exp => job.experience.includes(exp)) : true;
+    const matchesExperience = filters.experience.length ? filters.experience.some(exp => job.experience?.includes(exp)) : true;
     const matchesPostedWithin = filters.postedWithin.length ? filters.postedWithin.includes(job.postedWithin) : true;
 
     return matchesType && matchesLocation && matchesExperience && matchesPostedWithin;
@@ -99,7 +99,9 @@ function JobListing() {
                   </div>
                 </div>
                 <div className="job-category-listing mb-50">
+                  {/* <div className="single-listing"> */}
                   <div className="single-listing">
+                  <div className="select-Categories  pb-30">
                     <div className="small-section-tittle2">
                       <h4>Job Type</h4>
                     </div>
@@ -120,6 +122,7 @@ function JobListing() {
                       <span className="checkmark"></span>
                     </label>
                   </div>
+                </div>
                   <div className="single-listing">
                     <div className="small-section-tittle2">
                       <h4>Job Location</h4>
@@ -144,12 +147,16 @@ function JobListing() {
                         <input type="checkbox" name="experience" value="2-3 Years" onChange={handleFilterChange} />
                         <span className="checkmark"></span>
                       </label>
-                      <label className="container">3-6 Years
-                        <input type="checkbox" name="experience" value="3-6 Years" onChange={handleFilterChange} />
+                      <label className="container">3-5 Years
+                        <input type="checkbox" name="experience" value="3-5 Years" onChange={handleFilterChange} />
                         <span className="checkmark"></span>
                       </label>
-                      <label className="container">6-more..
-                        <input type="checkbox" name="experience" value="6-more" onChange={handleFilterChange} />
+                      <label className="container">5-10 Years
+                        <input type="checkbox" name="experience" value="5-10 Years" onChange={handleFilterChange} />
+                        <span className="checkmark"></span>
+                      </label>
+                      <label className="container">10+ Years
+                        <input type="checkbox" name="experience" value="10+ Years" onChange={handleFilterChange} />
                         <span className="checkmark"></span>
                       </label>
                     </div>
@@ -232,10 +239,10 @@ function JobListing() {
                       <div className="single-job-items mb-30" key={job.id}>
                         <div className="job-items">
                           <div className="company-img">
-                            <button href="#"><img src={job.companyLogo || './assets/img/icon/company.png'} alt={`${job.company} logo`} style={{ width: '50px', height: '50px' }} /></button>
+                            <button onClick={() => handleViewDetails(job)}><img src={job.companyLogo || './assets/img/icon/company.png'} alt={`${job.company} logo`} style={{ width: '50px', height: '50px' }} /></button>
                           </div>
                           <div className="job-tittle job-tittle2">
-                            <button href="#" onClick={() => handleViewDetails(job)}>
+                            <button onClick={() => handleViewDetails(job)}>
                               <h4>{job.title}</h4>
                             </button>
                             <ul>
@@ -246,7 +253,7 @@ function JobListing() {
                           </div>
                         </div>
                         <div className="items-link items-link2 f-right">
-                          <a href="job_details.html">{job.jobType ? job.jobType.join(", ") : "N/A"}</a>
+                          <button onClick={() => window.location.href='job_details.html'}>{job.jobType ? job.jobType.join(", ") : "N/A"}</button>
                           <span>{job.postedDate ? new Date(job.postedDate.seconds * 1000).toLocaleDateString() : "N/A"}</span>
                         </div>
                       </div>
@@ -264,10 +271,10 @@ function JobListing() {
                 <div className="single-wrap d-flex justify-content-center">
                   <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-start">
-                      <li className="page-item active"><button className="page-link" href="#">01</button></li>
-                      <li className="page-item"><button className="page-link" href="#">02</button></li>
-                      <li className="page-item"><button className="page-link" href="#">03</button></li>
-                      <li className="page-item"><button className="page-link" href="#"><span className="ti-angle-right"></span></button></li>
+                      <li className="page-item active"><button className="page-link" onClick={() => window.location.href='#'}>01</button></li>
+                      <li className="page-item"><button className="page-link" onClick={() => window.location.href='#'}>02</button></li>
+                      <li className="page-item"><button className="page-link" onClick={() => window.location.href='#'}>03</button></li>
+                      <li className="page-item"><button className="page-link" onClick={() => window.location.href='#'}><span className="ti-angle-right"></span></button></li>
                     </ul>
                   </nav>
                 </div>

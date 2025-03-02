@@ -74,14 +74,15 @@ function Header() {
                                                 <li><Link to="/">Home</Link></li>
                                                 <li><Link to="/joblist">Find Jobs</Link></li>
                                                 <li><Link to="/about">About</Link></li>
-                                                <li><Link to="/">Page</Link>
+                                                <li><Link to="/allblogs">Blogs</Link></li>
+                                                {/* <li><Link to="/">Page</Link>
                                                     <ul className="submenu">
-                                                        <li><Link to="/blogs">Blog</Link></li>
+                                                        <li><Link to="/allblogs">Blog</Link></li>
                                                         <li><Link to="/singleblog">Blog Details</Link></li>
                                                         <li><Link to="/elements">Elements</Link></li>
                                                         <li><Link to="/job_details">Job Details</Link></li>
                                                     </ul>
-                                                </li>
+                                                </li> */}
                                                 <li><Link to="/contact">Contact</Link></li>
                                             </ul>
                                         </nav>

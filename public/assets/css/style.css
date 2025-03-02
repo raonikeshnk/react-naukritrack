@@ -229,6 +229,47 @@ button {
     outline: medium none
 }
 
+button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    transition: all .3s ease-out 0s;
+}
+
+button:focus {
+    outline: none;
+}
+
+.footer-tittle button,
+.footer-social button {
+    /* color: #635c5c; */
+    text-decoration: none;
+}
+
+.footer-tittle button:hover,
+.footer-social button:hover {
+/* call varibale theme-color  */
+    color: #fb246a;
+}
+
+.footer-tittle button {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-social button {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.footer-social i {
+    font-size: 20px;
+}
+
 button:focus,
 input:focus,
 input:focus,
@@ -5988,7 +6029,7 @@ form.search-box .search-form {
     }
 }
 
-form.search-box .search-form a {
+form.search-box .search-form button {
     width: 100%;
     height: 70px;
     background: #fb246a;
