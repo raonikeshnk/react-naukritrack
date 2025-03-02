@@ -10,7 +10,6 @@ export function Login({ setUserRole }) {
   const [message, setMessage] = useState("");
   const [canResend, setCanResend] = useState(true);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const user = auth.currentUser;
@@ -24,14 +23,12 @@ export function Login({ setUserRole }) {
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
-    setLoading(true);
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
       if (!user.emailVerified) {
         setMessage("Please verify your email before logging in.");
-        setLoading(false);
         return;
       }
 
@@ -57,8 +54,6 @@ export function Login({ setUserRole }) {
         default:
           setMessage(`Error: ${error.message}`);
       }
-    } finally {
-      setLoading(false);
     }
   };
 

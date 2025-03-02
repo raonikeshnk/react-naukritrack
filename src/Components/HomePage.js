@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 
 
 function HomePage() {
@@ -504,7 +504,7 @@ function HomePage() {
                                         <div className="blog-cap">
                                             <p>|   Properties</p>
                                             <h3><button href="single-blog.html">Footprints in Time is perfect House in Kurashiki</button></h3>
-                                            <a href="#" className="more-btn">Read more »</a>
+                                            <button href="#" className="more-btn">Read more »</button>
                                         </div>
                                     </div>
                                 </div>
@@ -523,7 +523,7 @@ function HomePage() {
                                         <div className="blog-cap">
                                             <p>|   Properties</p>
                                             <h3><button href="single-blog.html">Footprints in Time is perfect House in Kurashiki</button></h3>
-                                            <a href="#" className="more-btn">Read more »</a>
+                                            <button href="#" className="more-btn">Read more »</button>
                                         </div>
                                     </div>
                                 </div>
