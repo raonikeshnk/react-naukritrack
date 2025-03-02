@@ -25,7 +25,7 @@ const UserDashboard = () => {
     const [categories, setCategories] = useState([]);
     const [notifications, setNotifications] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [updatedBlogId, setUpdatedBlogId] = useState(null);
+    // const [updatedBlogId, setUpdatedBlogId] = useState(null);
 
 
     // Fetch notifications for the logged-in user
@@ -64,34 +64,6 @@ const UserDashboard = () => {
         }
     };
 
-    // Add a comment and create a notification for the blog owner
-    const addComment = async (blogId, ownerId, commenterName, commentText) => {
-        const db = getFirestore();
-        try {
-            // Add comment to Firestore
-            await addDoc(collection(db, 'comments'), {
-                blogId,
-                ownerId,
-                commenterName,
-                commentText,
-                timestamp: serverTimestamp()
-            });
-
-            // Add notification for blog owner
-            await addDoc(collection(db, 'notifications'), {
-                userId: ownerId,
-                message: `${commenterName} commented on your blog "${blogId}"`,
-                partialComment: commentText.slice(0, 50) + '...',
-                isRead: false,
-                timestamp: serverTimestamp()
-            });
-
-            toast.success('Comment added successfully!');
-        } catch (error) {
-            toast.error('Failed to add comment. Please try again.');
-            console.error("Error adding comment:", error);
-        }
-    };
 
     // Fetch user name based on the current user
     useEffect(() => {

@@ -232,12 +232,12 @@ function JobListing() {
                       <div className="single-job-items mb-30" key={job.id}>
                         <div className="job-items">
                           <div className="company-img">
-                            <a href="#"><img src={job.companyLogo || './assets/img/icon/company.png'} alt={`${job.company} logo`} style={{ width: '50px', height: '50px' }} /></a>
+                            <button href="#"><img src={job.companyLogo || './assets/img/icon/company.png'} alt={`${job.company} logo`} style={{ width: '50px', height: '50px' }} /></button>
                           </div>
                           <div className="job-tittle job-tittle2">
-                            <a href="#" onClick={() => handleViewDetails(job)}>
+                            <button href="#" onClick={() => handleViewDetails(job)}>
                               <h4>{job.title}</h4>
-                            </a>
+                            </button>
                             <ul>
                               <li>{job.company}</li>
                               <li><i className="fas fa-map-marker-alt"></i>{job.location}</li>
@@ -264,10 +264,10 @@ function JobListing() {
                 <div className="single-wrap d-flex justify-content-center">
                   <nav aria-label="Page navigation example">
                     <ul className="pagination justify-content-start">
-                      <li className="page-item active"><a className="page-link" href="#">01</a></li>
-                      <li className="page-item"><a className="page-link" href="#">02</a></li>
-                      <li className="page-item"><a className="page-link" href="#">03</a></li>
-                      <li className="page-item"><a className="page-link" href="#"><span className="ti-angle-right"></span></a></li>
+                      <li className="page-item active"><button className="page-link" href="#">01</button></li>
+                      <li className="page-item"><button className="page-link" href="#">02</button></li>
+                      <li className="page-item"><button className="page-link" href="#">03</button></li>
+                      <li className="page-item"><button className="page-link" href="#"><span className="ti-angle-right"></span></button></li>
                     </ul>
                   </nav>
                 </div>

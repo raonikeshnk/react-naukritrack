@@ -55,12 +55,12 @@ const JobList = () => {
         <div className="single-job-items mb-30" key={job.id}>
           <div className="job-items">
             <div className="company-img">
-              <a href="#"><img src={job.companyLogo || 'assets/img/icon/job-list1.png'} alt={`${job.company} logo`} style={{ width: '50px', height: '50px' }} /></a>
+              <button href="#"><img src={job.companyLogo || 'assets/img/icon/job-list1.png'} alt={`${job.company} logo`} style={{ width: '50px', height: '50px' }} /></button>
             </div>
             <div className="job-tittle job-tittle2">
-              <a href="#" onClick={() => handleViewDetails(job)}>
+              <button href="#" onClick={() => handleViewDetails(job)}>
                 <h4>{job.title}</h4>
-              </a>
+              </button>
               <ul>
                 <li>{job.company}</li>
                 <li><i className="fas fa-map-marker-alt"></i>{job.location}</li>

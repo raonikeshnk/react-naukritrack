@@ -30,12 +30,12 @@ function JobDetails() {
                 <div class="single-job-items mb-50">
                     <div class="job-items">
                         <div class="company-img company-img-details">
-                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""/></a>
+                            <button href="#"><img src="assets/img/icon/job-list1.png" alt=""/></button>
                         </div>
                         <div class="job-tittle">
-                            <a href="#">
+                            <button href="#">
                                 <h4>Digital Marketer</h4>
-                            </a>
+                            </button>
                             <ul>
                                 <li>Creative Agency</li>
                                 <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
@@ -99,7 +99,7 @@ function JobDetails() {
                       <li>Application date : <span>12 Sep 2020</span></li>
                   </ul>
                  <div class="apply-btn2">
-                    <a href="#" class="btn">Apply Now</a>
+                    <button href="#" class="btn">Apply Now</button>
                  </div>
                </div>
                 <div class="post-details4  mb-50">

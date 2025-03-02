@@ -35,10 +35,10 @@ function Sidebar({ searchTerm, handleSearch, searchResults, categories, recentPo
                 <ul className="list cat-list">
                     {categories.map(([category, count]) => (
                         <li key={category} onClick={() => handleCategoryClick(category)}>
-                            <a href="#" className="d-flex">
+                            <button href="#" className="d-flex">
                                 <p>{category}</p>
                                 <p>({count})</p>
-                            </a>
+                            </button>
                         </li>
                     ))}
                 </ul>

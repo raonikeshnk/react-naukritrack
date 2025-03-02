@@ -34,8 +34,8 @@ function Footer() {
                                             <p>Address :Your address goes
                                                 here, your demo address.</p>
                                         </li>
-                                        <li><a href="#">Phone : +8880 44338899</a></li>
-                                        <li><a href="#">Email : info@colorlib.com</a></li>
+                                        <li><button href="#">Phone : +8880 44338899</button></li>
+                                        <li><button href="#">Email : info@colorlib.com</button></li>
                                     </ul>
                                 </div>
 
@@ -46,11 +46,11 @@ function Footer() {
                                 <div className="footer-tittle">
                                     <h4>Important Link</h4>
                                     <ul>
-                                        <li><a href="#"> View Project</a></li>
-                                        <li><a href="#">Contact Us</a></li>
-                                        <li><a href="#">Testimonial</a></li>
-                                        <li><a href="#">Proparties</a></li>
-                                        <li><a href="#">Support</a></li>
+                                        <li><button href="#"> View Project</button></li>
+                                        <li><button href="#">Contact Us</button></li>
+                                        <li><button href="#">Testimonial</button></li>
+                                        <li><button href="#">Proparties</button></li>
+                                        <li><button href="#">Support</button></li>
                                     </ul>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@ function Footer() {
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-6">
                             {/* <!-- logo --> */}
                             <div className="footer-logo mb-20">
-                                <a href="index.html"><img src="assets/img/logo/naukri-track-white.png" alt="" /></a>
+                                <button href="index.html"><img src="assets/img/logo/naukri-track-white.png" alt="" /></button>
                             </div>
                         </div>
                         <div className="col-xl-3 col-lg-3 col-md-4 col-sm-5">
@@ -137,10 +137,10 @@ function Footer() {
                             </div>
                             <div className="col-xl-2 col-lg-2">
                                 <div className="footer-social f-right">
-                                    <a href="#"><i className="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i className="fab fa-twitter"></i></a>
-                                    <a href="#"><i className="fas fa-globe"></i></a>
-                                    <a href="#"><i className="fab fa-behance"></i></a>
+                                    <button href="#"><i className="fab fa-facebook-f"></i></button>
+                                    <button href="#"><i className="fab fa-twitter"></i></button>
+                                    <button href="#"><i className="fas fa-globe"></i></button>
+                                    <button href="#"><i className="fab fa-behance"></i></button>
                                 </div>
                             </div>
                         </div>

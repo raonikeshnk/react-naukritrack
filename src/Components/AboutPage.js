@@ -175,7 +175,7 @@ const AboutPage = () => {
                 <div class="cv-caption text-center">
                     <p class="pera1">FEATURED TOURS Packages</p>
                     <p class="pera2"> Make a Difference with Your Online Resume!</p>
-                    <a href="#" class="border-btn2 border-btn4">Upload your cv</a>
+                    <button href="#" class="border-btn2 border-btn4">Upload your cv</button>
                 </div>
             </div>
         </div>
@@ -210,7 +210,7 @@ const AboutPage = () => {
                         <div class="blog-cap">
                             <p>|   Properties</p>
                             <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                            <a href="#" class="more-btn">Read more »</a>
+                            <button href="#" class="more-btn">Read more »</button>
                         </div>
                     </div>
                 </div>
@@ -229,7 +229,7 @@ const AboutPage = () => {
                         <div class="blog-cap">
                             <p>|   Properties</p>
                             <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                            <a href="#" class="more-btn">Read more »</a>
+                            <button href="#" class="more-btn">Read more »</button>
                         </div>
                     </div>
                 </div>

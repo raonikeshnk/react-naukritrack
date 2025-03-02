@@ -28,13 +28,11 @@ const SuperuserDashboard = () => {
     const [blogs, setBlogs] = useState([]);
     const [activeSection, setActiveSection] = useState("allBlogs");
     const [selectedBlog, setSelectedBlog] = useState(null);
-    const [selectedBlogPreview, setSelectedBlogPreview] = useState(null);
     const [filteredBlogs, setFilteredBlogs] = useState([]);
     const [sortOption, setSortOption] = useState('title');
     const [filterCategory, setFilterCategory] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [categories, setCategories] = useState([]);
-    const [isPreviewMode, setIsPreviewMode] = useState(false);
     const [notifications, setNotifications] = useState([]);
     const [authors, setAuthors] = useState([]);
     const [filterAuthor, setFilterAuthor] = useState('');
@@ -143,18 +141,7 @@ const SuperuserDashboard = () => {
         return () => unsubscribe(); // Cleanup subscription
     }, []);
 
-    const addNotification = async (message) => {
-        const db = getFirestore();
-        await addDoc(collection(db, 'ntnotifications'), {
-            message,
-            timestamp: new Date(),
-        });
-    };
-
-    useEffect(() => {
-        handleFilter();
-    }, [filterCategory, searchQuery]);
-
+    
     useEffect(() => {
         const sortedBlogs = [...blogs].sort((a, b) => {
             const aCreatedAt = a.createdAt?.seconds ?? 0;
@@ -164,8 +151,6 @@ const SuperuserDashboard = () => {
         setFilteredBlogs(sortedBlogs);
     }, [blogs]);
 
-    // Preview and Edit functionality
-    const handlePreview = (blog) => setSelectedBlogPreview(blog);
     const handleDelete = async (id) => {
         try {
             const db = getFirestore();
@@ -296,13 +281,11 @@ const SuperuserDashboard = () => {
 
         setFilteredBlogs(filtered);
     };
+
     useEffect(() => {
-        handleFilter(); // `filterAuthor` update hone ke baad filter apply karega
-    }, [filterAuthor]);
+        handleFilter();
+    }, [filterAuthor, filterCategory, searchQuery, handleFilter]);
 
-    const togglePreviewMode = () => setIsPreviewMode(prevState => !prevState);
-
-    const handleNotification = (message) => setNotifications(prevNotifications => [...prevNotifications, message]);
 
     if (!currentUser) {
         return <div>Please log in to view your blogs.</div>;

@@ -11,39 +11,39 @@ function HomePage() {
     const jobTitleRef = useRef(null);
     const locationRef = useRef(null);
 
-    const handleFindJob = (event) => {
-        event.preventDefault();
-        const jobTitle = jobTitleRef.current.value;
-        const location = locationRef.current.value;
+    // const handleFindJob = (event) => {
+    //     event.preventDefault();
+    //     const jobTitle = jobTitleRef.current.value;
+    //     const location = locationRef.current.value;
 
-        if (jobTitle && location) {
-            console.log(`Searching for jobs as a ${jobTitle} in ${location}...`);
-        } else {
-            alert('Please enter both a job title and a location.');
-        }
-    };
+    //     if (jobTitle && location) {
+    //         console.log(`Searching for jobs as a ${jobTitle} in ${location}...`);
+    //     } else {
+    //         alert('Please enter both a job title and a location.');
+    //     }
+    // };
 
-    const handleFocus = (event, placeholder) => {
-        event.target.style.borderColor = 'blue';
-        event.target.placeholder = '';
-    };
+    // const handleFocus = (event, placeholder) => {
+    //     event.target.style.borderColor = 'blue';
+    //     event.target.placeholder = '';
+    // };
 
-    const handleBlur = (event, placeholder) => {
-        event.target.style.borderColor = '';
-        if (!event.target.value) event.target.placeholder = placeholder;
-    };
+    // const handleBlur = (event, placeholder) => {
+    //     event.target.style.borderColor = '';
+    //     if (!event.target.value) event.target.placeholder = placeholder;
+    // };
 
-    const jobCategories = [
-        'Design & Creative', 'Design & Development', 'Sales & Marketing',
-        'Mobile Application', 'Construction', 'Information Technology',
-        'Real Estate', 'Content Writer'
-    ];
+    // const jobCategories = [
+    //     'Design & Creative', 'Design & Development', 'Sales & Marketing',
+    //     'Mobile Application', 'Construction', 'Information Technology',
+    //     'Real Estate', 'Content Writer'
+    // ];
 
-    const applyProcesses = [
-        { title: 'Search a job', icon: 'flaticon-search' },
-        { title: 'Apply for job', icon: 'flaticon-curriculum-vitae' },
-        { title: 'Get your job', icon: 'flaticon-tour' },
-    ];
+    // const applyProcesses = [
+    //     { title: 'Search a job', icon: 'flaticon-search' },
+    //     { title: 'Apply for job', icon: 'flaticon-curriculum-vitae' },
+    //     { title: 'Get your job', icon: 'flaticon-tour' },
+    // ];
 
     return (
         <>
@@ -93,7 +93,7 @@ function HomePage() {
                                             </div>
 
                                             <div className="search-form">
-                                                <a href="#">Find job</a>
+                                                <button href="#">Find job</button>
                                             </div>
                                         </form>
                                     </div>
@@ -225,7 +225,7 @@ function HomePage() {
                                 <div className="cv-caption text-center">
                                     <p className="pera1">FEATURED TOURS Packages</p>
                                     <p className="pera2"> Make a Difference with Your Online Resume!</p>
-                                    <a href="#" className="border-btn2 border-btn4">Upload your cv</a>
+                                    <button href="#" className="border-btn2 border-btn4">Upload your cv</button>
                                 </div>
                             </div>
                         </div>
@@ -503,7 +503,7 @@ function HomePage() {
                                         </div>
                                         <div className="blog-cap">
                                             <p>|   Properties</p>
-                                            <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                            <h3><button href="single-blog.html">Footprints in Time is perfect House in Kurashiki</button></h3>
                                             <a href="#" className="more-btn">Read more »</a>
                                         </div>
                                     </div>
@@ -522,7 +522,7 @@ function HomePage() {
                                         </div>
                                         <div className="blog-cap">
                                             <p>|   Properties</p>
-                                            <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                            <h3><button href="single-blog.html">Footprints in Time is perfect House in Kurashiki</button></h3>
                                             <a href="#" className="more-btn">Read more »</a>
                                         </div>
                                     </div>

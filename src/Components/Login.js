@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { auth, db } from "./Firebase/firebase";
 import { signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+// import { getFirestore, doc, getDoc } from "firebase/firestore";
 
 export function Login({ setUserRole }) {
   const [email, setEmail] = useState("");

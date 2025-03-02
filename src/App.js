@@ -78,7 +78,7 @@ const App = () => {
           <Route path="/singleblog/:id" element={<SingleBlog key={window.location.pathname } />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={!currentUser ? <Login /> : <Navigate to="/" replace />} />
-          {/* <Route path="/joblist" element={<JobList />} /> */}
+          <Route path="/joblist1" element={<JobList />} />
 
           {/* Role-Specific Protected Routes */}
           <Route

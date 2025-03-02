@@ -32,6 +32,7 @@ const ContactPage = () => {
               allowFullScreen="" 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
+              title='Google Map'
             ></iframe>
           </div>
           {/* Google Map Code End */}

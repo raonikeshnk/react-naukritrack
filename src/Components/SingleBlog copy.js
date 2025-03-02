@@ -31,8 +31,8 @@ function SingleBlog2() {
                   <div className="blog_details">
                      <h2>Second divided from form fish beast made every of seas</h2>
                      <ul className="blog-info-link mt-3 mb-4">
-                        <li><a href="#"><i className="fa fa-user"></i> Travel, Lifestyle</a></li>
-                        <li><a href="#"><i className="fa fa-comments"></i> 03 Comments</a></li>
+                        <li><button href="#"><i className="fa fa-user"></i> Travel, Lifestyle</button></li>
+                        <li><button href="#"><i className="fa fa-comments"></i> 03 Comments</button></li>
                      </ul>
                      <p className="excert">
                         MCSE boot camps have its supporters and its detractors. Some people do not understand why you
@@ -74,10 +74,10 @@ function SingleBlog2() {
                         <p className="comment-count"><span className="align-middle"><i className="fa fa-comment"></i></span> 06 Comments</p> 
                      </div>
                      <ul className="social-icons">
-                        <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i className="fab fa-dribbble"></i></a></li>
-                        <li><a href="#"><i className="fab fa-behance"></i></a></li>
+                        <li><button href="#"><i className="fab fa-facebook-f"></i></button></li>
+                        <li><button href="#"><i className="fab fa-twitter"></i></button></li>
+                        <li><button href="#"><i className="fab fa-dribbble"></i></button></li>
+                        <li><button href="#"><i className="fab fa-behance"></i></button></li>
                      </ul>
                   </div>
                   <div className="navigation-area">
@@ -85,39 +85,39 @@ function SingleBlog2() {
                         <div
                            className="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
                            <div className="thumb">
-                              <a href="#">
+                              <button href="#">
                                  <img className="img-fluid" src="assets/img/post/preview.png" alt=""/>
-                              </a>
+                              </button>
                            </div>
                            <div className="arrow">
-                              <a href="#">
+                              <button href="#">
                                  <span className="lnr text-white ti-arrow-left"></span>
-                              </a>
+                              </button>
                            </div>
                            <div className="detials">
                               <p>Prev Post</p>
-                              <a href="#">
+                              <button href="#">
                                  <h4>Space The Final Frontier</h4>
-                              </a>
+                              </button>
                            </div>
                         </div>
                         <div
                            className="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
                            <div className="detials">
                               <p>Next Post</p>
-                              <a href="#">
+                              <button href="#">
                                  <h4>Telescopes 101</h4>
-                              </a>
+                              </button>
                            </div>
                            <div className="arrow">
-                              <a href="#">
+                              <button href="#">
                                  <span className="lnr text-white ti-arrow-right"></span>
-                              </a>
+                              </button>
                            </div>
                            <div className="thumb">
-                              <a href="#">
+                              <button href="#">
                                  <img className="img-fluid" src="assets/img/post/next.png" alt=""/>
-                              </a>
+                              </button>
                            </div>
                         </div>
                      </div>
@@ -127,9 +127,9 @@ function SingleBlog2() {
                   <div className="media align-items-center">
                      <img src="assets/img/blog/author.png" alt=""/>
                      <div className="media-body">
-                        <a href="#">
+                        <button href="#">
                            <h4>Harvard milan</h4>
-                        </a>
+                        </button>
                         <p>Second divided from form fish beast made. Every of seas all gathered use saying you're, he
                            our dominion twon Second divided from</p>
                      </div>
@@ -151,12 +151,12 @@ function SingleBlog2() {
                               <div className="d-flex justify-content-between">
                                  <div className="d-flex align-items-center">
                                     <h5>
-                                       <a href="#">Emilly Blunt</a>
+                                       <button href="#">Emilly Blunt</button>
                                     </h5>
                                     <p className="date">December 4, 2017 at 3:12 pm </p>
                                  </div>
                                  <div className="reply-btn">
-                                    <a href="#" className="btn-reply text-uppercase">reply</a>
+                                    <button href="#" className="btn-reply text-uppercase">reply</button>
                                  </div>
                               </div>
                            </div>
@@ -177,12 +177,12 @@ function SingleBlog2() {
                               <div className="d-flex justify-content-between">
                                  <div className="d-flex align-items-center">
                                     <h5>
-                                       <a href="#">Emilly Blunt</a>
+                                       <button href="#">Emilly Blunt</button>
                                     </h5>
                                     <p className="date">December 4, 2017 at 3:12 pm </p>
                                  </div>
                                  <div className="reply-btn">
-                                    <a href="#" className="btn-reply text-uppercase">reply</a>
+                                    <button href="#" className="btn-reply text-uppercase">reply</button>
                                  </div>
                               </div>
                            </div>
@@ -203,12 +203,12 @@ function SingleBlog2() {
                               <div className="d-flex justify-content-between">
                                  <div className="d-flex align-items-center">
                                     <h5>
-                                       <a href="#">Emilly Blunt</a>
+                                       <button href="#">Emilly Blunt</button>
                                     </h5>
                                     <p className="date">December 4, 2017 at 3:12 pm </p>
                                  </div>
                                  <div className="reply-btn">
-                                    <a href="#" className="btn-reply text-uppercase">reply</a>
+                                    <button href="#" className="btn-reply text-uppercase">reply</button>
                                  </div>
                               </div>
                            </div>
@@ -269,40 +269,40 @@ function SingleBlog2() {
                      <h4 className="widget_title">Category</h4>
                      <ul className="list cat-list">
                         <li>
-                           <a href="#" className="d-flex">
+                           <button href="#" className="d-flex">
                               <p>Resaurant food</p>
                               <p>(37)</p>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#" className="d-flex">
+                           <button href="#" className="d-flex">
                               <p>Travel news</p>
                               <p>(10)</p>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#" className="d-flex">
+                           <button href="#" className="d-flex">
                               <p>Modern technology</p>
                               <p>(03)</p>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#" className="d-flex">
+                           <button href="#" className="d-flex">
                               <p>Product</p>
                               <p>(11)</p>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#" className="d-flex">
+                           <button href="#" className="d-flex">
                               <p>Inspiration</p>
                               <p>(21)</p>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#" className="d-flex">
+                           <button href="#" className="d-flex">
                               <p>Health Care</p>
                               <p>(21)</p>
-                           </a>
+                           </button>
                         </li>
                      </ul>
                   </aside>
@@ -311,36 +311,36 @@ function SingleBlog2() {
                      <div className="media post_item">
                         <img src="assets/img/post/post_1.png" alt="post"/>
                         <div className="media-body">
-                           <a href="single-blog.html">
+                           <button href="single-blog.html">
                               <h3>From life was you fish...</h3>
-                           </a>
+                           </button>
                            <p>January 12, 2019</p>
                         </div>
                      </div>
                      <div className="media post_item">
                         <img src="assets/img/post/post_2.png" alt="post"/>
                         <div className="media-body">
-                           <a href="single-blog.html">
+                           <button href="single-blog.html">
                               <h3>The Amazing Hubble</h3>
-                           </a>
+                           </button>
                            <p>02 Hours ago</p>
                         </div>
                      </div>
                      <div className="media post_item">
                         <img src="assets/img/post/post_3.png" alt="post"/>
                         <div className="media-body">
-                           <a href="single-blog.html">
+                           <button href="single-blog.html">
                               <h3>Astronomy Or Astrology</h3>
-                           </a>
+                           </button>
                            <p>03 Hours ago</p>
                         </div>
                      </div>
                      <div className="media post_item">
                         <img src="assets/img/post/post_4.png" alt="post"/>
                         <div className="media-body">
-                           <a href="single-blog.html">
+                           <button href="single-blog.html">
                               <h3>Asteroids telescope</h3>
-                           </a>
+                           </button>
                            <p>01 Hours ago</p>
                         </div>
                      </div>
@@ -349,28 +349,28 @@ function SingleBlog2() {
                      <h4 className="widget_title">Tag Clouds</h4>
                      <ul className="list">
                         <li>
-                           <a href="#">project</a>
+                           <button href="#">project</button>
                         </li>
                         <li>
-                           <a href="#">love</a>
+                           <button href="#">love</button>
                         </li>
                         <li>
-                           <a href="#">technology</a>
+                           <button href="#">technology</button>
                         </li>
                         <li>
-                           <a href="#">travel</a>
+                           <button href="#">travel</button>
                         </li>
                         <li>
-                           <a href="#">restaurant</a>
+                           <button href="#">restaurant</button>
                         </li>
                         <li>
-                           <a href="#">life style</a>
+                           <button href="#">life style</button>
                         </li>
                         <li>
-                           <a href="#">design</a>
+                           <button href="#">design</button>
                         </li>
                         <li>
-                           <a href="#">illustration</a>
+                           <button href="#">illustration</button>
                         </li>
                      </ul>
                   </aside>
@@ -378,34 +378,34 @@ function SingleBlog2() {
                      <h4 className="widget_title">Instagram Feeds</h4>
                      <ul className="instagram_row flex-wrap">
                         <li>
-                           <a href="#">
+                           <button href="#">
                               <img className="img-fluid" src="assets/img/post/post_5.png" alt=""/>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#">
+                           <button href="#">
                               <img className="img-fluid" src="assets/img/post/post_6.png" alt=""/>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#">
+                           <button href="#">
                               <img className="img-fluid" src="assets/img/post/post_7.png" alt=""/>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#">
+                           <button href="#">
                               <img className="img-fluid" src="assets/img/post/post_8.png" alt=""/>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#">
+                           <button href="#">
                               <img className="img-fluid" src="assets/img/post/post_9.png" alt=""/>
-                           </a>
+                           </button>
                         </li>
                         <li>
-                           <a href="#">
+                           <button href="#">
                               <img className="img-fluid" src="assets/img/post/post_10.png" alt=""/>
-                           </a>
+                           </button>
                         </li>
                      </ul>
                   </aside>

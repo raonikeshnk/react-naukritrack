@@ -28,21 +28,21 @@ function BlogPage() {
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="assets/img/blog/single_blog_1.png" alt="" />
-                                        <a href="#" class="blog_item_date">
+                                        <button href="#" class="blog_item_date">
                                             <h3>15</h3>
                                             <p>Jan</p>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <div class="blog_details">
-                                        <a class="d-inline-block" href="single-blog.html">
+                                        <button class="d-inline-block" href="single-blog.html">
                                             <h2>Google inks pact for new 35-storey office</h2>
-                                        </a>
+                                        </button>
                                         <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                             he earth it first without heaven in place seed it second morning saying.</p>
                                         <ul class="blog-info-link">
-                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><button href="#"><i class="fa fa-user"></i> Travel, Lifestyle</button></li>
+                                            <li><button href="#"><i class="fa fa-comments"></i> 03 Comments</button></li>
                                         </ul>
                                     </div>
                                 </article>
@@ -50,21 +50,21 @@ function BlogPage() {
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="assets/img/blog/single_blog_2.png" alt="" />
-                                        <a href="#" class="blog_item_date">
+                                        <button href="#" class="blog_item_date">
                                             <h3>15</h3>
                                             <p>Jan</p>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <div class="blog_details">
-                                        <a class="d-inline-block" href="single-blog.html">
+                                        <button class="d-inline-block" href="single-blog.html">
                                             <h2>Google inks pact for new 35-storey office</h2>
-                                        </a>
+                                        </button>
                                         <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                             he earth it first without heaven in place seed it second morning saying.</p>
                                         <ul class="blog-info-link">
-                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><button href="#"><i class="fa fa-user"></i> Travel, Lifestyle</button></li>
+                                            <li><button href="#"><i class="fa fa-comments"></i> 03 Comments</button></li>
                                         </ul>
                                     </div>
                                 </article>
@@ -72,21 +72,21 @@ function BlogPage() {
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="assets/img/blog/single_blog_3.png" alt="" />
-                                        <a href="#" class="blog_item_date">
+                                        <button href="#" class="blog_item_date">
                                             <h3>15</h3>
                                             <p>Jan</p>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <div class="blog_details">
-                                        <a class="d-inline-block" href="single-blog.html">
+                                        <button class="d-inline-block" href="single-blog.html">
                                             <h2>Google inks pact for new 35-storey office</h2>
-                                        </a>
+                                        </button>
                                         <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                             he earth it first without heaven in place seed it second morning saying.</p>
                                         <ul class="blog-info-link">
-                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><button href="#"><i class="fa fa-user"></i> Travel, Lifestyle</button></li>
+                                            <li><button href="#"><i class="fa fa-comments"></i> 03 Comments</button></li>
                                         </ul>
                                     </div>
                                 </article>
@@ -94,21 +94,21 @@ function BlogPage() {
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="assets/img/blog/single_blog_4.png" alt="" />
-                                        <a href="#" class="blog_item_date">
+                                        <button href="#" class="blog_item_date">
                                             <h3>15</h3>
                                             <p>Jan</p>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <div class="blog_details">
-                                        <a class="d-inline-block" href="single-blog.html">
+                                        <button class="d-inline-block" href="single-blog.html">
                                             <h2>Google inks pact for new 35-storey office</h2>
-                                        </a>
+                                        </button>
                                         <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                             he earth it first without heaven in place seed it second morning saying.</p>
                                         <ul class="blog-info-link">
-                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><button href="#"><i class="fa fa-user"></i> Travel, Lifestyle</button></li>
+                                            <li><button href="#"><i class="fa fa-comments"></i> 03 Comments</button></li>
                                         </ul>
                                     </div>
                                 </article>
@@ -116,21 +116,21 @@ function BlogPage() {
                                 <article class="blog_item">
                                     <div class="blog_item_img">
                                         <img class="card-img rounded-0" src="assets/img/blog/single_blog_5.png" alt="" />
-                                        <a href="#" class="blog_item_date">
+                                        <button href="#" class="blog_item_date">
                                             <h3>15</h3>
                                             <p>Jan</p>
-                                        </a>
+                                        </button>
                                     </div>
 
                                     <div class="blog_details">
-                                        <a class="d-inline-block" href="single-blog.html">
+                                        <button class="d-inline-block" href="single-blog.html">
                                             <h2>Google inks pact for new 35-storey office</h2>
-                                        </a>
+                                        </button>
                                         <p>That dominion stars lights dominion divide years for fourth have don't stars is that
                                             he earth it first without heaven in place seed it second morning saying.</p>
                                         <ul class="blog-info-link">
-                                            <li><a href="#"><i class="fa fa-user"></i> Travel, Lifestyle</a></li>
-                                            <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                            <li><button href="#"><i class="fa fa-user"></i> Travel, Lifestyle</button></li>
+                                            <li><button href="#"><i class="fa fa-comments"></i> 03 Comments</button></li>
                                         </ul>
                                     </div>
                                 </article>
@@ -138,20 +138,20 @@ function BlogPage() {
                                 <nav class="blog-pagination justify-content-center d-flex">
                                     <ul class="pagination">
                                         <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Previous">
+                                            <button href="#" class="page-link" aria-label="Previous">
                                                 <i class="ti-angle-left"></i>
-                                            </a>
+                                            </button>
                                         </li>
                                         <li class="page-item">
-                                            <a href="#" class="page-link">1</a>
+                                            <button href="#" class="page-link">1</button>
                                         </li>
                                         <li class="page-item active">
-                                            <a href="#" class="page-link">2</a>
+                                            <button href="#" class="page-link">2</button>
                                         </li>
                                         <li class="page-item">
-                                            <a href="#" class="page-link" aria-label="Next">
+                                            <button href="#" class="page-link" aria-label="Next">
                                                 <i class="ti-angle-right"></i>
-                                            </a>
+                                            </button>
                                         </li>
                                     </ul>
                                 </nav>
@@ -180,40 +180,40 @@ function BlogPage() {
                                     <h4 class="widget_title">Category</h4>
                                     <ul class="list cat-list">
                                         <li>
-                                            <a href="#" class="d-flex">
+                                            <button href="#" class="d-flex">
                                                 <p>Resaurant food</p>
                                                 <p>(37)</p>
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" class="d-flex">
+                                            <button href="#" class="d-flex">
                                                 <p>Travel news</p>
                                                 <p>(10)</p>
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" class="d-flex">
+                                            <button href="#" class="d-flex">
                                                 <p>Modern technology</p>
                                                 <p>(03)</p>
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" class="d-flex">
+                                            <button href="#" class="d-flex">
                                                 <p>Product</p>
                                                 <p>(11)</p>
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" class="d-flex">
+                                            <button href="#" class="d-flex">
                                                 <p>Inspiration</p>
                                                 <p>21</p>
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#" class="d-flex">
+                                            <button href="#" class="d-flex">
                                                 <p>Health Care (21)</p>
                                                 <p>09</p>
-                                            </a>
+                                            </button>
                                         </li>
                                     </ul>
                                 </aside>
@@ -223,36 +223,36 @@ function BlogPage() {
                                     <div class="media post_item">
                                         <img src="assets/img/post/post_1.png" alt="post" />
                                         <div class="media-body">
-                                            <a href="single-blog.html">
+                                            <button href="single-blog.html">
                                                 <h3>From life was you fish...</h3>
-                                            </a>
+                                            </button>
                                             <p>January 12, 2019</p>
                                         </div>
                                     </div>
                                     <div class="media post_item">
                                         <img src="assets/img/post/post_2.png" alt="post" />
                                         <div class="media-body">
-                                            <a href="single-blog.html">
+                                            <button href="single-blog.html">
                                                 <h3>The Amazing Hubble</h3>
-                                            </a>
+                                            </button>
                                             <p>02 Hours ago</p>
                                         </div>
                                     </div>
                                     <div class="media post_item">
                                         <img src="assets/img/post/post_3.png" alt="post" />
                                         <div class="media-body">
-                                            <a href="single-blog.html">
+                                            <button href="single-blog.html">
                                                 <h3>Astronomy Or Astrology</h3>
-                                            </a>
+                                            </button>
                                             <p>03 Hours ago</p>
                                         </div>
                                     </div>
                                     <div class="media post_item">
                                         <img src="assets/img/post/post_4.png" alt="post" />
                                         <div class="media-body">
-                                            <a href="single-blog.html">
+                                            <button href="single-blog.html">
                                                 <h3>Asteroids telescope</h3>
-                                            </a>
+                                            </button>
                                             <p>01 Hours ago</p>
                                         </div>
                                     </div>
@@ -261,28 +261,28 @@ function BlogPage() {
                                     <h4 class="widget_title">Tag Clouds</h4>
                                     <ul class="list">
                                         <li>
-                                            <a href="#">project</a>
+                                            <button href="#">project</button>
                                         </li>
                                         <li>
-                                            <a href="#">love</a>
+                                            <button href="#">love</button>
                                         </li>
                                         <li>
-                                            <a href="#">technology</a>
+                                            <button href="#">technology</button>
                                         </li>
                                         <li>
-                                            <a href="#">travel</a>
+                                            <button href="#">travel</button>
                                         </li>
                                         <li>
-                                            <a href="#">restaurant</a>
+                                            <button href="#">restaurant</button>
                                         </li>
                                         <li>
-                                            <a href="#">life style</a>
+                                            <button href="#">life style</button>
                                         </li>
                                         <li>
-                                            <a href="#">design</a>
+                                            <button href="#">design</button>
                                         </li>
                                         <li>
-                                            <a href="#">illustration</a>
+                                            <button href="#">illustration</button>
                                         </li>
                                     </ul>
                                 </aside>
@@ -292,34 +292,34 @@ function BlogPage() {
                                     <h4 class="widget_title">Instagram Feeds</h4>
                                     <ul class="instagram_row flex-wrap">
                                         <li>
-                                            <a href="#">
+                                            <button href="#">
                                                 <img class="img-fluid" src="assets/img/post/post_5.png" alt="" />
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <button href="#">
                                                 <img class="img-fluid" src="assets/img/post/post_6.png" alt="" />
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <button href="#">
                                                 <img class="img-fluid" src="assets/img/post/post_7.png" alt="" />
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <button href="#">
                                                 <img class="img-fluid" src="assets/img/post/post_8.png" alt="" />
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <button href="#">
                                                 <img class="img-fluid" src="assets/img/post/post_9.png" alt="" />
-                                            </a>
+                                            </button>
                                         </li>
                                         <li>
-                                            <a href="#">
+                                            <button href="#">
                                                 <img class="img-fluid" src="assets/img/post/post_10.png" alt="" />
-                                            </a>
+                                            </button>
                                         </li>
                                     </ul>
                                 </aside>

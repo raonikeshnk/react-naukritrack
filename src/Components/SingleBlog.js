@@ -20,28 +20,13 @@ function SingleBlog() {
     loading,
     handleSearch,
     formatDate,
-    handleCategoryClick,
-    currentPage,
-    setCurrentPage,
-    blogsPerPage,
     addComment,
     user,
-    userDetails
   } = useBlogData(blogId); // Use the custom hook
 
   const [liked, setLiked] = useState(false);
   const [commentText, setCommentText] = useState("");
   const [error, setError] = useState("");
-  const [isValid, setIsValid] = useState(false);
-
-  const handleCommentChange = (e) => {
-    const text = e.target.value;
-    setCommentText(text);
-
-    // Count words
-    const wordCount = text.trim().split(/\s+/).length;
-    setIsValid(wordCount >= 100);
-  };
 
   const navigateToPost = (postId) => {
     navigate(`/singleblog/${postId}`);
@@ -105,10 +90,10 @@ function SingleBlog() {
                   <h2>{blog.title}</h2>
                   <ul className="blog-info-link mt-3 mb-4">
                     <li>
-                      <a href="#" onClick={() => handleCategoryNavigate(blog.category)}><i className="fa fa-user"></i> {blog.category || "Uncategorized"}</a>
+                      <button className="link-button" onClick={() => handleCategoryNavigate(blog.category)}><i className="fa fa-user"></i> {blog.category || "Uncategorized"}</button>
                     </li>
                     <li>
-                      <a href="#"><i className="fa fa-comments"></i> {comments.length} Comments</a>
+                      <button className="link-button"><i className="fa fa-comments"></i> {comments.length} Comments</button>
                     </li>
                   </ul>
                   <p dangerouslySetInnerHTML={{ __html: blog.content ? blog.content : 'no content' }} />
@@ -126,10 +111,10 @@ function SingleBlog() {
                     <p className="comment-count"><span className="align-middle"><i className="fa fa-comment"></i></span> {comments.length} Comments</p>
                   </div>
                   <ul className="social-icons">
-                    <li><a href="#"><i className="fab fa-facebook-f"></i></a></li>
-                    <li><a href="#"><i className="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i className="fab fa-dribbble"></i></a></li>
-                    <li><a href="#"><i className="fab fa-behance"></i></a></li>
+                    <li><button className="link-button"><i className="fab fa-facebook-f"></i></button></li>
+                    <li><button className="link-button"><i className="fab fa-twitter"></i></button></li>
+                    <li><button className="link-button"><i className="fab fa-dribbble"></i></button></li>
+                    <li><button className="link-button"><i className="fab fa-behance"></i></button></li>
                   </ul>
                 </div>
                 <div className="navigation-area">
@@ -138,14 +123,14 @@ function SingleBlog() {
                       {prevPost && (
                         <>
                           <div className="thumb">
-                            <a onClick={() => navigateToPost(prevPost.id)}><img className="img-fluid" src={prevPost.imageUrl || "/assets/img/post/preview.png"} style={{ width: '60px' }} alt="" /></a>
+                            <button onClick={() => navigateToPost(prevPost.id)}><img className="img-fluid" src={prevPost.imageUrl || "/assets/img/post/preview.png"} style={{ width: '60px' }} alt="" /></button>
                           </div>
                           <div className="arrow">
-                            <a onClick={() => navigateToPost(prevPost.id)}><span className="lnr text-white ti-arrow-left"></span></a>
+                            <button onClick={() => navigateToPost(prevPost.id)}><span className="lnr text-white ti-arrow-left"></span></button>
                           </div>
                           <div className="detials">
                             <p>Prev Post</p>
-                            <a onClick={() => navigateToPost(prevPost.id)}><h4>{prevPost.title}</h4></a>
+                            <button className="link-button" onClick={() => navigateToPost(prevPost.id)}><h4>{prevPost.title}</h4></button>
                           </div>
                         </>
                       )}
@@ -155,13 +140,13 @@ function SingleBlog() {
                         <>
                           <div className="detials">
                             <p>Next Post</p>
-                            <a onClick={() => navigateToPost(nextPost.id)}><h4>{nextPost.title}</h4></a>
+                            <button className="link-button" onClick={() => navigateToPost(nextPost.id)}><h4>{nextPost.title}</h4></button>
                           </div>
                           <div className="arrow">
-                            <a onClick={() => navigateToPost(nextPost.id)}><span className="lnr text-white ti-arrow-right"></span></a>
+                            <button onClick={() => navigateToPost(nextPost.id)}><span className="lnr text-white ti-arrow-right"></span></button>
                           </div>
                           <div className="thumb">
-                            <a onClick={() => navigateToPost(nextPost.id)}><img className="img-fluid" src={nextPost.imageUrl || "/assets/img/post/next.png"} style={{ width: '60px' }} alt="" /></a>
+                            <button onClick={() => navigateToPost(nextPost.id)}><img className="img-fluid" src={nextPost.imageUrl || "/assets/img/post/next.png"} style={{ width: '60px' }} alt="" /></button>
                           </div>
                         </>
                       )}
@@ -174,7 +159,7 @@ function SingleBlog() {
                   <div className="media align-items-center">
                     <img src={author.profilePicture} alt={author.name} className="img-fluid rounded-circle" style={{ width: '150px', height: '150px' }} />
                     <div className="media-body">
-                      <a href="#"><h4>{author.name}</h4></a>
+                      <button className="link-button"><h4>{author.name}</h4></button>
                       <p>{author.about}</p>
                     </div>
                   </div>
@@ -196,7 +181,7 @@ function SingleBlog() {
                           <div className="d-flex justify-content-between">
                             <div className="d-flex align-items-center">
                               <h5>
-                                <a href="#">{comment.userName}</a>
+                                <button className="link-button">{comment.userName}</button>
                               </h5>
                               <p className="date">{new Date(comment.createdAt.seconds * 1000).toLocaleDateString()}</p>
                             </div>
@@ -220,7 +205,7 @@ function SingleBlog() {
                       onChange={(e) => setCommentText(e.target.value)}
                       required
                     ></textarea>
-                    {error && <p className="text-danger mt-2">{error} <a href="/login">Login</a></p>}
+                    {error && <p className="text-danger mt-2">{error} <button className="link-button" href="/login">Login</button></p>}
                   </div>
                   <button type="submit" className="button button-contactForm btn_1 boxed-btn">Post Comment</button>
                 </form>

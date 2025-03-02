@@ -183,10 +183,34 @@ const Profile = () => {
                     <div className="mb-3">
                         <h5>Social Links:</h5>
                         <ul className="list-unstyled">
-                            {socialLinks.facebook && <li><a className='text-dark' href={`https://facebook.com/${socialLinks.facebook}`} target="_blank" rel="noopener noreferrer"><FaFacebook /> Facebook</a></li> || 'Add your Facebook link'} <br />
-                            {socialLinks.twitter && <li><a className='text-dark' href={`https://twitter.com/${socialLinks.twitter}`} target="_blank" rel="noopener noreferrer"><FaTwitter /> Twitter</a></li> || 'Add your Twitter link'} <br />
-                            {socialLinks.linkedin && <li><a className='text-dark' href={`https://linkedin.com/in/${socialLinks.linkedin}`} target="_blank" rel="noopener noreferrer"><FaLinkedin /> LinkedIn</a></li> || 'Add your LinkedIn link'} <br />
-                            {socialLinks.instagram && <li><a className='text-dark' href={`https://instagram.com/${socialLinks.instagram}`} target="_blank" rel="noopener noreferrer"><FaInstagram /> Instagram</a></li> || 'Add your Instagram link'}
+                            {(socialLinks.facebook && (
+                                <li>
+                                    <a className='text-dark' href={`https://facebook.com/${socialLinks.facebook}`} target="_blank" rel="noopener noreferrer">
+                                        <FaFacebook /> Facebook
+                                    </a>
+                                </li>
+                            )) || 'Add your Facebook link'} <br />
+                            {(socialLinks.twitter && (
+                                <li>
+                                    <a className='text-dark' href={`https://twitter.com/${socialLinks.twitter}`} target="_blank" rel="noopener noreferrer">
+                                        <FaTwitter /> Twitter
+                                    </a>
+                                </li>
+                            )) || 'Add your Twitter link'} <br />
+                            {(socialLinks.linkedin && (
+                                <li>
+                                    <a className='text-dark' href={`https://linkedin.com/in/${socialLinks.linkedin}`} target="_blank" rel="noopener noreferrer">
+                                        <FaLinkedin /> LinkedIn
+                                    </a>
+                                </li>
+                            )) || 'Add your LinkedIn link'} <br />
+                            {(socialLinks.instagram && (
+                                <li>
+                                    <a className='text-dark' href={`https://instagram.com/${socialLinks.instagram}`} target="_blank" rel="noopener noreferrer">
+                                        <FaInstagram /> Instagram
+                                    </a>
+                                </li>
+                            )) || 'Add your Instagram link'}
                         </ul>
                     </div>
                     <button type="button" className="btn btn-primary" onClick={() => setEditing(true)}>

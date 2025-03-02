@@ -9,7 +9,7 @@ function BlogList() {
   console.log("BlogList - location state:", state);
 
   const {
-    blogs,
+    // Removed: blogs,
     categories,
     recentPosts,
     searchTerm,
@@ -35,7 +35,7 @@ function BlogList() {
         setCurrentPage(1);
       }
     }
-  }, [state, blogsLoaded]);
+  }, [state, blogsLoaded, handleCategoryClick, setCurrentPage]);
 
   // Pagination logic
   const indexOfLastBlog = currentPage * blogsPerPage;
@@ -80,14 +80,14 @@ function BlogList() {
                         src={blog.imageUrl || 'default-image.jpg'}
                         alt={blog.title}
                       />
-                      <a href="#" className="blog_item_date">
+                      <div className="blog_item_date">
                         {blog.createdAt && (
                           <>
                             <h3>{new Date(blog.createdAt.seconds * 1000).getDate()}</h3>
                             <p>{new Date(blog.createdAt.seconds * 1000).toLocaleString('default', { month: 'short' })}</p>
                           </>
                         )}
-                      </a>
+                      </div>
                     </div>
 
                     <div className="blog_details">
@@ -101,9 +101,9 @@ function BlogList() {
                       />
 
                       <ul className="blog-info-link">
-                        <li><a href="#"><i className="fa fa-user"></i> {blog.authorName || "Unknown"}</a></li>
-                        <li><a href="#"><i className="fa fa-hashtag"></i> {blog.category}</a></li>
-                        <li><a href="#"><i className="fa fa-comments"></i> {blog.tags ? blog.tags.length : 0} Comments</a></li>
+                        <li><span><i className="fa fa-user"></i> {blog.authorName || "Unknown"}</span></li>
+                        <li><span><i className="fa fa-hashtag"></i> {blog.category}</span></li>
+                        <li><span><i className="fa fa-comments"></i> {blog.tags ? blog.tags.length : 0} Comments</span></li>
                       </ul>
                     </div>
                   </article>
@@ -113,9 +113,9 @@ function BlogList() {
                   <ul className="pagination">
                     {[...Array(Math.ceil(filteredBlogs.length / blogsPerPage)).keys()].map(number => (
                       <li key={number + 1} className={`page-item ${currentPage === number + 1 ? 'active' : ''}`}>
-                        <a onClick={() => paginate(number + 1)} href="#" className="page-link">
+                        <button onClick={() => paginate(number + 1)} className="page-link">
                           {number + 1}
-                        </a>
+                        </button>
                       </li>
                     ))}
                   </ul>

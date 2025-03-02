@@ -157,7 +157,7 @@ export const useBlogData = (blogId) => {
     fetchCategories();
     fetchRecentPosts();
     fetchComments();
-  }, [blogId]);
+  }, [blogId, db, fetchComments]);
 
   const handleSearch = (event) => {
     const input = event.target.value;
