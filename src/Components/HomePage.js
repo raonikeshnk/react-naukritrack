@@ -8,8 +8,8 @@ function HomePage() {
         const $ = window.$; // Ensure jQuery is available
         $('#select1').niceSelect(); // Initialize Nice Select on the original select element
     }, []);
-    const jobTitleRef = useRef(null);
-    const locationRef = useRef(null);
+    // const jobTitleRef = useRef(null);
+    // const locationRef = useRef(null);
 
     // const handleFindJob = (event) => {
     //     event.preventDefault();

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { getFirestore, collection, getDocs, query, orderBy, limit, where, doc, getDoc, addDoc } from 'firebase/firestore';
 import { app } from '../Components/Firebase/firebase';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
@@ -44,7 +44,7 @@ export const useBlogData = (blogId) => {
     return () => unsubscribe();
   }, [auth, db]);
 
-  const fetchComments = async () => {
+  const fetchComments = useCallback(async () => {
     if (!blogId) return;
     try {
       const commentsQuery = query(collection(db, "comments"), where("blogId", "==", blogId), orderBy("createdAt", "asc"));
@@ -57,7 +57,7 @@ export const useBlogData = (blogId) => {
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
-  };
+  }, [blogId, db]);
 
   useEffect(() => {
     const fetchBlog = async () => {

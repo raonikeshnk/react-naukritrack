@@ -8,7 +8,7 @@ import EditBlog from './EditBlog';
 import JobPostForm from './JobPostForm';
 import Modal from './Modal';
 import { useAuth } from '../../context/AuthContext';
-import { getFirestore, collection, getDoc, deleteDoc, query, where, orderBy, getDocs, addDoc, serverTimestamp, updateDoc, doc } from 'firebase/firestore';
+import { getFirestore, collection, getDoc, deleteDoc, query, where, orderBy, getDocs, updateDoc, doc } from 'firebase/firestore';
 import JobList from './JobList';
 
 const UserDashboard = () => {
@@ -25,8 +25,6 @@ const UserDashboard = () => {
     const [categories, setCategories] = useState([]);
     const [notifications, setNotifications] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    // const [updatedBlogId, setUpdatedBlogId] = useState(null);
-
 
     // Fetch notifications for the logged-in user
     useEffect(() => {
@@ -46,7 +44,6 @@ const UserDashboard = () => {
         fetchNotifications();
     }, [currentUser]);
 
-
     // Mark a notification as read
     const markAsRead = async (notificationId) => {
         try {
@@ -63,7 +60,6 @@ const UserDashboard = () => {
             console.error("Error marking notification as read:", error);
         }
     };
-
 
     // Fetch user name based on the current user
     useEffect(() => {
@@ -85,7 +81,6 @@ const UserDashboard = () => {
     useEffect(() => {
         const fetchBlogs = async () => {
             if (currentUser) {
-
                 const db = getFirestore();
                 const q = query(collection(db, 'ntblogs'), where('authorId', '==', currentUser.uid));
                 const querySnapshot = await getDocs(q);
@@ -94,8 +89,7 @@ const UserDashboard = () => {
                 console.log('Blog Data:', blogsData);
                 const uniqueCategories = Array.from(new Set(blogsData.map(blog => blog.category)));
                 setCategories(uniqueCategories);
-            };
-
+            }
         }
         fetchBlogs();
     }, [currentUser]);
@@ -157,7 +151,6 @@ const UserDashboard = () => {
         setActiveSection("allBlogs"); // All blogs view pe wapas jane ke liye
     };
 
-
     // Handle sorting changes
     const handleSort = (option) => {
         const newOrder = (sortOption === option && sortOrder === 'asc') ? 'desc' : 'asc';
@@ -202,7 +195,6 @@ const UserDashboard = () => {
         setSelectedBlog(null);
     };
 
-
     const deleteBlog = (id) => {
         Swal.fire({
             title: 'Are you sure?',
@@ -219,7 +211,6 @@ const UserDashboard = () => {
                     await deleteDoc(doc(db, 'ntblogs', id));
                     setBlogs(prevBlogs => prevBlogs.filter(blog => blog.id !== id));
                     toast.success('Blog deleted successfully!');
-                    // fetchBlogs();
                 } catch (error) {
                     toast.error('Failed to delete blog.');
                     console.error("Error deleting blog:", error);
@@ -227,7 +218,6 @@ const UserDashboard = () => {
             }
         });
     };
-
 
     const editBlog = (blog) => {
         setSelectedBlog(blog);
@@ -332,7 +322,7 @@ const UserDashboard = () => {
                                 <div className="d-flex">
                                     {/* Date Sort Button */}
                                     <button
-                                        className=" btn-secondary me-2"
+                                        className="btn-secondary me-2"
                                         onClick={() => handleSort('date')}
                                     >
                                         Date {sortOption === 'date' && sortOrder === 'asc' ? '↑' : '↓'}
@@ -340,7 +330,7 @@ const UserDashboard = () => {
 
                                     {/* Published Sort Button */}
                                     <button
-                                        className=" btn-secondary me-2"
+                                        className="btn-secondary me-2"
                                         onClick={() => handleSort('publish')}
                                     >
                                         Published {sortOption === 'publish' && sortOrder === 'asc' ? '↑' : '↓'}
@@ -348,7 +338,7 @@ const UserDashboard = () => {
 
                                     {/* Title Sort Button */}
                                     <button
-                                        className=" btn-secondary me-2"
+                                        className="btn-secondary me-2"
                                         onClick={() => handleSort('title')}
                                     >
                                         Title {sortOption === 'title' && sortOrder === 'asc' ? '↑' : '↓'}
@@ -356,14 +346,13 @@ const UserDashboard = () => {
 
                                     {/* Category Sort Button */}
                                     <button
-                                        className=" btn-secondary"
+                                        className="btn-secondary"
                                         onClick={() => handleSort('category')}
                                     >
                                         Category {sortOption === 'category' && sortOrder === 'asc' ? '↑' : '↓'}
                                     </button>
                                 </div>
                             </div>
-
 
                             <table className="table table-striped">
                                 <thead>
@@ -380,7 +369,6 @@ const UserDashboard = () => {
                                 </thead>
                                 <tbody>
                                     {filteredBlogs.map((blog, index) => (
-
                                         <BlogItem
                                             key={blog.id}
                                             blog={blog}
@@ -392,7 +380,6 @@ const UserDashboard = () => {
                                             onUnpublish={() => togglePublishStatus(blog)}
                                             onPreview={() => openPreview(blog)}
                                         />
-
                                     ))}
                                 </tbody>
                             </table>
@@ -400,13 +387,10 @@ const UserDashboard = () => {
                     )}
 
                     {activeSection === "addBlog" && <AddBlog />}
-                    {/* {activeSection === "editBlog" && selectedBlog && (
-                        <EditBlog blog={selectedBlog} onCancel={handleCancel} />
-                    )} */}
+
                     {activeSection === "editBlog" && selectedBlog && (
                         <EditBlog blog={selectedBlog} onCancel={handleCancel} onUpdateSuccess={handleUpdateSuccess} />
                     )}
-
 
                     {selectedBlog && (
                         <Modal
@@ -415,10 +399,10 @@ const UserDashboard = () => {
                             blog={selectedBlog}
                         />
                     )}
+
                     {activeSection === "addJobPost" && <JobPostForm />} 
+
                     {activeSection === "allJobPost" && <JobList />} 
-
-
                 </div>
             </div>
         </div>

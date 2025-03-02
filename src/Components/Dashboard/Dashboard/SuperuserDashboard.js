@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import AddBlog from './AddBlog';
@@ -19,7 +19,6 @@ import {
     updateDoc,
     getDoc,
     onSnapshot,
-    addDoc,
 } from 'firebase/firestore';
 
 const SuperuserDashboard = () => {
@@ -235,13 +234,6 @@ const SuperuserDashboard = () => {
         setActiveSection("allBlogs"); // All blogs view pe wapas jane ke liye
     };
 
-    const handleCancel = () => {
-        setSelectedBlog(null);
-        setActiveSection("allBlogs");
-    };
-
-    const handleAddBlog = () => setActiveSection("addBlog");
-
     const handleSort = (option) => {
         setSortOption(option);
         const sortedBlogs = [...filteredBlogs].sort((a, b) => {
@@ -263,7 +255,7 @@ const SuperuserDashboard = () => {
         setFilteredBlogs(sortedBlogs);
     };
 
-    const handleFilter = () => {
+    const handleFilter = useCallback(() => {
         let filtered = blogs;
 
         if (filterCategory) {
@@ -280,7 +272,7 @@ const SuperuserDashboard = () => {
         }
 
         setFilteredBlogs(filtered);
-    };
+    }, [blogs, filterCategory, filterAuthor, searchQuery]);
 
     useEffect(() => {
         handleFilter();
